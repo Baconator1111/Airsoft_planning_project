@@ -77,6 +77,7 @@ app.get('/logout', (req, res) => {
 
 //app endpoints start here
 
+app.get("/api/userinfo", userCtrl.getUserInfo)
 app.put("/api/user", userCtrl.updateUserInfo)
 app.put("/api/user/type/:type", userCtrl.updateUserType)
 

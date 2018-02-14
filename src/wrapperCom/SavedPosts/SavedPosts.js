@@ -1,5 +1,6 @@
 import React, { Component } from 'react'
 
+import NavBar from '../../components/NavBar/NavBar'
 
 export default class SavedPosts extends Component {
     constructor( props ) {
@@ -12,6 +13,7 @@ export default class SavedPosts extends Component {
     render(){
         return (
             <div>
+                <NavBar page='Saved Posts'/>
                 <h1>Saved Posts component</h1>
             </div>
         )

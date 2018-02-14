@@ -1,4 +1,12 @@
 module.exports = {
+    getUserInfo: function( req, res ) {
+        const db = req.app.get( 'db' ),
+            { user_id } = req.user
+        
+        db.get_user_info( user_id )
+            .then( userInfo => res.status(200).send( userInfo[0] ) ) 
+                .catch( error => console.log( error ) )   
+    },
     updateUserInfo: function( req, res ) {
         const db = req.app.get( 'db' ),
             { user_id } = req.user,

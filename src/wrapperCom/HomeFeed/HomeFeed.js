@@ -1,5 +1,6 @@
 import React, { Component } from 'react'
 
+import NavBar from '../../components/NavBar/NavBar'
 
 export default class HomeFeed extends Component {
     constructor( props ) {
@@ -12,6 +13,7 @@ export default class HomeFeed extends Component {
     render(){
         return (
             <div>
+                <NavBar page='General Feed' />
                 <h1>HomeFeed component</h1>
             </div>
         )
