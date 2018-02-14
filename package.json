@@ -1,5 +1,7 @@
 {
   "name": "airsoft-planner-project",
+  "proxy": "http://localhost:3080",
+  "main": "server/server.js",
   "version": "0.1.0",
   "private": true,
   "dependencies": {

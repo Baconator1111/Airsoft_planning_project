@@ -36,11 +36,11 @@ passport.use( new Auth0Strategy({
     db.find_user([ sub ])
         .then( resp => {
             if ( resp[0] ) {
-                done( null, resp[0].id)
+                done( null, resp[0].user_id)
             } else {
                 db.create_user([ name, picture, sub ])
                     .then( resp => {
-                        done(null, resp[0].id)
+                        done(null, resp[0].user_id)
                     })
             }
         })
@@ -55,7 +55,7 @@ passport.deserializeUser( ( id, done ) => {
 
 app.get( '/auth', passport.authenticate( 'auth0' ) )
 app.get( '/auth/callback', passport.authenticate( 'auth0', { 
-    successRedirect: 'http://localhost:3000/#/profile'
+    successRedirect: 'http://localhost:3000/'
 } ) )
 app.get( '/auth/me', ( req, res) => {
     if ( !req.user ) {
@@ -73,8 +73,8 @@ app.get( '/logout', ( req, res ) =>{
 
 //app endpoints start here
 
-app.put( "/api/user", userCtrl.updateUser )
-app.put( "/api/user/type/:type", userCtrl.updateUser )
+app.put( "/api/user", userCtrl.updateUserInfo )
+app.put( "/api/user/type/:type", userCtrl.updateUserType )
 
 app.get( "/api/posts", postsCtrl.readPosts )
 app.put( "/api/posts", postsCtrl.updatePost )
@@ -90,7 +90,7 @@ app.get( "/api/friends", friendsCtrl.readCurrentFriends )
 app.put( "/api/newfriends", friendsCtrl.searchNewFriends )
 app.put( "/api/addfriend", friendsCtrl.createFriendship )
 app.put( "/api/comfirmfriend", friendsCtrl.confirmFriend )
-app.delete( "/api/friend", friendsCtrl.deletePost )
+app.delete( "/api/friend", friendsCtrl.deleteFriend )
     
 
 app.listen(SERVER_PORT, ()=> console.log(`Server listening to port ${ SERVER_PORT }`))
