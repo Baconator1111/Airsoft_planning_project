@@ -77,7 +77,7 @@ const app = express(),
     }
 )
 
-//app endpoints start here
+//frontend` endpoints start here
 app.use(bodyParser.json())
 
 app.get("/api/userinfo", userCtrl.getUserInfo)
@@ -87,12 +87,14 @@ app.put("/api/user", (req, res, next) => {
 } ,userCtrl.updateUserInfo)
 app.put("/api/user/type/:type", userCtrl.updateUserType)
 
-app.get("/api/posts/:post_id_com", postsCtrl.readPosts)
+app.get("/api/posts", postsCtrl.readPosts)
 app.put("/api/posts", postsCtrl.updatePost)
 app.post("/api/posts", postsCtrl.createPost)
 app.delete("/api/posts", postsCtrl.deletePost)
+app.post("/api/posts/filter", postsCtrl.filterPost)
+app.post("/api/posts/save", postsCtrl.savedPost)
 
-app.get("/api/comments", commentsCtrl.readComments)
+app.get("/api/comments/:post_id_com", commentsCtrl.readComments)
 app.put("/api/comments", commentsCtrl.updateComment)
 app.post("/api/comments", commentsCtrl.createComment)
 app.delete("/api/comments", commentsCtrl.deleteComment)

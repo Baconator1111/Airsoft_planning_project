@@ -4,7 +4,7 @@ module.exports = {
             { post_id_com } = req.params
 
         db.get_post_comments( post_id_com )
-            then( comments => res.status(200).send( comments ) )
+            .then( comments => res.status(200).send( comments ) )
     },
     createComment: function( req, res ) {
         const db = req.app.get( 'db' ),

@@ -1,6 +1,6 @@
 module.exports = {
     readPosts: function (req, res) {
-        console.log(req.user)
+        console.log(req.user.user_id)
         const db = req.app.get('db')
         const { user_id } = req.user
 
@@ -31,5 +31,22 @@ module.exports = {
 
         db.delete_post([user_id, post_id])
             .then(() => res.status(200).send('post deleted'))
+    },
+    filterPost: function (req, res) {
+        const db = req.app.get('db'),
+        { user_id } = req.user,
+        { post_id } = req.body
+
+        db.add_filtered_post([user_id, post_id])
+            .then(() => res.status(200).send('post deleted'))
+    },
+    savedPost: function (req, res) {
+        const db = req.app.get('db'),
+        { user_id } = req.user,
+        { post_id } = req.body
+
+        db.add_saved_post([user_id, post_id])
+            .then(() => res.status(200).send('post deleted'))
     }
+
 }

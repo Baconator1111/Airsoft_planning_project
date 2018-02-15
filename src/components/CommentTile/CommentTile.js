@@ -10,9 +10,13 @@ export default class CommentTile extends Component {
     }
 
     render(){
+        const comment = this.props.comment
         return (
-            <div>
-                <h1>Comment Tile component</h1>
+            <div key={comment.comment_id} className='commentDisplay'>
+                <div className='commentUserImg'><img src={comment.user_img} alt=""/></div>
+                <div className='commentUserName'>{comment.user_name}</div>
+                <div className='commentTitle'>{comment.com_title}</div>
+                <div className='commentBody'>{comment.com_body}</div>
             </div>
         )
     }

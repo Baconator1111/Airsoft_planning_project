@@ -1,5 +1,5 @@
 import React, { Component } from 'react'
-import './ExpandableBox.css'
+// import './ExpandableBox.css'
 
 export default class ExpandableBox extends Component {
     constructor(props) {
@@ -20,8 +20,10 @@ export default class ExpandableBox extends Component {
 
     render() {
         return (
-            <div className={this.state.opened ? 'expanded' : 'notExpanded'} onClick={() => this.handleClickedBox()}>
-                {this.props.boxTitle}
+            <div>
+                <div className={this.state.opened ? 'expanded' : 'notExpanded'} onClick={() => this.handleClickedBox()}>
+                    {this.props.boxTitle}
+                </div>
                 {this.state.opened ? this.props.children : null}
             </div>
         )
