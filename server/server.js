@@ -8,80 +8,86 @@ const express = require('express'),
     postsCtrl = require('./controllers/posts_ctrl'),
     commentsCtrl = require('./controllers/comments_ctrl'),
     userCtrl = require('./controllers/user_ctrl'),
-    friendsCtrl = require('./controllers/friends_ctrl')
+    friendsCtrl = require('./controllers/friends_ctrl'),
+    bodyParser = require('body-parser')
 
 const app = express(),
     { SERVER_PORT, SESSION_SECRET, DOMAIN, CLIENT_ID, CLIENT_SECRET, CALLBACK_URL, DB_CONNECTION } = process.env
 
-app.use(session({
-    secret: SESSION_SECRET,
-    resave: false,
-    saveUninitialized: true
-}))
-app.use(passport.initialize())
-app.use(passport.session())
-
-massive(DB_CONNECTION).then(db => app.set('db', db))
-
-passport.use(new Auth0Strategy({
-    domain: DOMAIN,
-    clientID: CLIENT_ID,
-    clientSecret: CLIENT_SECRET,
-    callbackURL: CALLBACK_URL,
-    scope: 'openid profile'
-}, function (accessToken, refreshToken, extreParams, profile, done) {
-    const db = app.get('db')
-    const { sub, name, picture } = profile._json
-
-    db.find_user([sub])
+    
+    app.use(session({
+        secret: SESSION_SECRET,
+        resave: false,
+        saveUninitialized: true
+    }))
+    app.use(passport.initialize())
+    app.use(passport.session())
+    
+    massive(DB_CONNECTION).then(db => app.set('db', db))
+    
+    passport.use(new Auth0Strategy({
+        domain: DOMAIN,
+        clientID: CLIENT_ID,
+        clientSecret: CLIENT_SECRET,
+        callbackURL: CALLBACK_URL,
+        scope: 'openid profile'
+    }, function (accessToken, refreshToken, extreParams, profile, done) {
+        const db = app.get('db')
+        const { sub, name, picture } = profile._json
+        
+        db.find_user([sub])
         .then(resp => {
             if (resp[0]) {
                 done(null, resp[0].user_id)
             } else {
                 db.create_user([name, picture, sub])
-                    .then(resp => {
-                        done(null, resp[0].user_id)
-                    })
+                .then(resp => {
+                    done(null, resp[0].user_id)
+                })
             }
         })
-
-}))
-
-passport.serializeUser((id, done) => done(null, id))
-passport.deserializeUser((id, done) => {
-    const db = app.get('db')
-    db.find_logged_in_user([id]).then(resp => done(null, resp[0]))
-})
-
-app.get('/auth', passport.authenticate('auth0'))
-app.get('/auth/callback', (req, res, next) => {
-     
-    const authCB = passport.authenticate('auth0', {
-        successRedirect: 'http://localhost:3000/#/profile'
+        
+    }))
+    
+    passport.serializeUser((id, done) => done(null, id))
+    passport.deserializeUser((id, done) => {
+        const db = app.get('db')
+        db.find_logged_in_user([id]).then(resp => done(null, resp[0]))
     })
-    authCB( req, res, next )
-})
-app.get('/auth/me', (req, res) => {
-    if (!req.user) {
-        res.status(404).send('User no longer Logged in')
-    } else {
-        res.status(200).send(req.user)
+    
+    app.get('/auth', passport.authenticate('auth0'))
+    app.get('/auth/callback', (req, res, next) => {
+        
+        const authCB = passport.authenticate('auth0', {
+            successRedirect: 'http://localhost:3000/#/profile'
+        })
+        authCB( req, res, next )
+    })
+    app.get('/auth/me', (req, res) => {
+        if (!req.user) {
+            res.status(404).send('User no longer Logged in')
+        } else {
+            res.status(200).send(req.user)
+        }
+    })
+    
+    app.get('/logout', (req, res) => {
+        req.logout()
+        res.redirect('http://localhost:3000/#/')
     }
-})
-
-app.get('/logout', (req, res) => {
-    req.logout()
-    res.redirect('http://localhost:3000/#/')
-}
 )
 
 //app endpoints start here
+app.use(bodyParser.json())
 
 app.get("/api/userinfo", userCtrl.getUserInfo)
-app.put("/api/user", userCtrl.updateUserInfo)
+app.put("/api/user", (req, res, next) => {
+    console.log( req.body )
+    next()
+} ,userCtrl.updateUserInfo)
 app.put("/api/user/type/:type", userCtrl.updateUserType)
 
-app.get("/api/posts", postsCtrl.readPosts)
+app.get("/api/posts/:post_id_com", postsCtrl.readPosts)
 app.put("/api/posts", postsCtrl.updatePost)
 app.post("/api/posts", postsCtrl.createPost)
 app.delete("/api/posts", postsCtrl.deletePost)

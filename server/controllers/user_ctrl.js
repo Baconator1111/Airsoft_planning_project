@@ -8,11 +8,13 @@ module.exports = {
                 .catch( error => console.log( error ) )   
     },
     updateUserInfo: function( req, res ) {
+        console.log( req.body )
         const db = req.app.get( 'db' ),
             { user_id } = req.user,
-            { first_name, last_name, location } = req.body
+            { user_img, first_name, last_name, user_location, user_email } = req.body
+        
 
-        db.update_user_info([ user_id, first_name, last_name, location ])
+        db.update_user_info([ user_id, user_img, first_name, last_name, user_location, user_email ])
             .then( ()=> res.status(200).send( 'User Updated' ) )
     },
     updateUserType: function( req, res ) {

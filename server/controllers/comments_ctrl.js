@@ -1,7 +1,7 @@
 module.exports = {
     readComments: function( req, res ) {
         const db = req.app.get( 'db' ),
-            { post_id_com } = req.body
+            { post_id_com } = req.params
 
         db.get_post_comments( post_id_com )
             then( comments => res.status(200).send( comments ) )
