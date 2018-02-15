@@ -33,7 +33,7 @@ export default class HomeFeed extends Component {
                 post_title: this.state.post_title,
                 post_body: this.state.post_body
             }
-            axios.post('/api/posts', body)
+            axios.post('/api/posts', body)    
         }
     }
 
