@@ -21,9 +21,11 @@ export default class ExpandableBox extends Component {
     render() {
         return (
             <div>
-                <div className={this.state.opened ? 'expanded' : 'notExpanded'} onClick={() => this.handleClickedBox()}>
-                    {this.props.boxTitle}
-                </div>
+                <button>
+                    <div className={this.state.opened ? 'expanded' : 'notExpanded'} onClick={() => this.handleClickedBox()}>
+                        {this.props.boxTitle}
+                    </div>
+                </button>
                 {this.state.opened ? this.props.children : null}
             </div>
         )

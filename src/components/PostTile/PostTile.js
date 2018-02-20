@@ -1,5 +1,6 @@
 import React, { Component } from 'react'
 import axios from 'axios'
+import './postTile.css'
 
 import ExpandableBox from '../../components/ExpandableBox/ExpandableBox'
 import CommentTile from '../../components/CommentTile/CommentTile'
@@ -69,9 +70,11 @@ export default class PostTile extends Component {
         return (
             <div key={post.post_id} className='postDisplay'>
                 <div className='postUserImg'><img src={post.user_img} alt=""/></div>
-                <button className='filter' onClick={() => this.handleClickFilter(post)}>Filter Out</button>
-                <button className='save' onClick={() => this.handleClickSave(post)}>Save</button>
-                <button className='save' onClick={() => this.handleClickDelete(post)}>Delete</button>
+                <div className='postBtn' >
+                    <button className='filter' onClick={() => this.handleClickFilter(post)}>Filter Out</button>
+                    <button className='save' onClick={() => this.handleClickSave(post)}>Save</button>
+                    <button className='save' onClick={() => this.handleClickDelete(post)}>Delete</button>
+                </div>
                 <div className='postUserName'>{post.user_name}</div>
                 <div className='postTitle'>{post.post_title}</div>
                 <div className='postImg'><img src={post.post_img} alt=""/></div>

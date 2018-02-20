@@ -59,7 +59,6 @@ export default class UserInfo extends Component {
         return (
             <div className='profileMain'>
                 <NavBar page= 'Profile' />
-                <h1>Profile</h1>
                 <img src={ this.state.userimg } alt=""/><input onChange={e => console.log( e.target.files )} type="file"/>
                 <div >First Name:  <input className='profile_input' onChange={(e)=>this.handleChange(e.target.value,'firstName')} value = {this.state.firstName}/></div>
                 <div >Last Name:  <input className='profile_input' onChange={(e)=>this.handleChange(e.target.value,'lastName')} value = {this.state.lastName}/></div>

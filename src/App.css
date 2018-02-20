@@ -76,3 +76,8 @@ table {
 	border-spacing: 0;
 }
  /* by Taboola Sponsored Links */
+
+button:hover {
+	text-decoration: none;
+	cursor: pointer;
+}

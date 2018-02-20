@@ -1,0 +1,20 @@
+/* .postUserImg {
+    height: 100%;
+} */
+
+.postUserImg img{
+    height: 5rem;
+    width: 5rem;
+    float: left;
+    margin-left: 5vw;
+}
+
+.postBtn {
+    float: right;
+    margin-right: 5vw;
+}
+
+.postUserName {
+    float: left;
+}
+

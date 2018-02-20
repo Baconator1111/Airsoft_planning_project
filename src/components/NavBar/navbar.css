@@ -1,0 +1,37 @@
+@import url('https://fonts.google.com/css?family=Oswald');
+
+.navMain {
+	display: flex;
+	flex-direction: row;
+	flex-wrap: nowrap;
+	justify-content: space-between;
+	align-items: baseline;
+	align-content: stretch;
+}
+
+.navTitle{
+    width: 30%;
+    border: 2px solid red;
+}
+
+.navBtn {
+    
+}
+
+.navLinks {
+    /* position: fixed; */
+    float: right;
+}
+
+.navLinks div {
+    text-decoration: none;
+    font-family: 'Oswald', sans-serif;
+    color: rgba(1, 44, 1, 0.812);
+}
+
+.navLinks div:hover {
+    text-decoration: none;
+    background-color: greenyellow;
+}
+
+

@@ -1,5 +1,6 @@
 import React, { Component } from 'react'
 import axios from 'axios'
+import './homefeed.css'
 
 import NavBar from '../../components/NavBar/NavBar'
 import ExpandableBox from '../../components/ExpandableBox/ExpandableBox'
