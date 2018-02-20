@@ -1,5 +1,5 @@
 import React, { Component } from 'react'
-
+import './landing.css'
 
 export default class Landing extends Component {
     constructor( props ) {
@@ -11,10 +11,10 @@ export default class Landing extends Component {
 
     render(){
         return (
-            <div>
-                <h1>Landing component</h1>
+            <div className='landingMain' >
+                <div>‘By failing to prepare, 	      you are preparing to fail.’		-Benjamin Franklin</div>
                 <a href={ process.env.REACT_APP_LOGIN }><button>Login</button></a>
-                </div>
+            </div>
         )
     }
 }

@@ -21,12 +21,16 @@ export default class PostTile extends Component {
             .then( ({data}) => this.setState({ comments: data }) )
     }
 
-    handleClickFilter(postId) {
-        axios.post('/api/posts/filter', this.props.post)
+    handleClickDelete(post) {
+        axios.put('/api/posts/delete', post)
     }
 
-    handleClickSave(postId) {
-        axios.post('/api/posts/save', this.props.post)
+    handleClickFilter(post) {
+        axios.post('/api/posts/filter', post)
+    }
+
+    handleClickSave(post) {
+        axios.post('/api/posts/save', post)
     }
 
     handleComTitle(input) {
@@ -51,7 +55,7 @@ export default class PostTile extends Component {
             <div className='creatCommentExpBox' >
                 {this.state.comments.map((comment) => {
                     return (
-                        <div key={comment.comment_id} className='commentTile'>
+                        <div key={comment.com_id} className='commentTile'>
                             <CommentTile comment={comment} />
                         </div>
                     )
@@ -65,8 +69,9 @@ export default class PostTile extends Component {
         return (
             <div key={post.post_id} className='postDisplay'>
                 <div className='postUserImg'><img src={post.user_img} alt=""/></div>
-                <button className='filter' onClick={() => this.handleClickFilter(post.post_id)}>Filter Out</button>
-                <button className='save' onClick={() => this.handleClickSave(post.post_id)}>Save</button>
+                <button className='filter' onClick={() => this.handleClickFilter(post)}>Filter Out</button>
+                <button className='save' onClick={() => this.handleClickSave(post)}>Save</button>
+                <button className='save' onClick={() => this.handleClickDelete(post)}>Delete</button>
                 <div className='postUserName'>{post.user_name}</div>
                 <div className='postTitle'>{post.post_title}</div>
                 <div className='postImg'><img src={post.post_img} alt=""/></div>

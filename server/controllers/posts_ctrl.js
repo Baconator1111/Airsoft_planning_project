@@ -1,6 +1,5 @@
 module.exports = {
     readPosts: function (req, res) {
-        console.log(req.user.user_id)
         const db = req.app.get('db')
         const { user_id } = req.user
 
@@ -29,6 +28,8 @@ module.exports = {
             { user_id } = req.user,
             { post_id } = req.body
 
+        console.log( user_id, post_id )        
+
         db.delete_post([user_id, post_id])
             .then(() => res.status(200).send('post deleted'))
     },
@@ -47,6 +48,13 @@ module.exports = {
 
         db.add_saved_post([user_id, post_id])
             .then(() => res.status(200).send('post deleted'))
+    },
+    getSavedPost: function(req, res) {
+        const db = req.app.get('db')
+        const { user_id } = req.user
+
+        db.get_saved_posts(user_id)
+            .then(posts => res.status(200).send(posts))
     }
 
 }
