@@ -14,3 +14,8 @@
     width: 300px;
     height: 30px;
   }
+
+  .profileMain img {
+    max-height: 20rem;
+    max-width: 20rem;
+  }

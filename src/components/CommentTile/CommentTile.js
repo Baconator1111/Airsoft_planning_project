@@ -1,5 +1,5 @@
 import React, { Component } from 'react'
-
+import './commentTile.css'
 
 export default class CommentTile extends Component {
     constructor( props ) {

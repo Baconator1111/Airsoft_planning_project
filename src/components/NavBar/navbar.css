@@ -1,6 +1,7 @@
-@import url('https://fonts.google.com/css?family=Oswald');
 
 .navMain {
+    background: rgb(18, 96, 18);
+    /* border: 2px solid red;     */
 	display: flex;
 	flex-direction: row;
 	flex-wrap: nowrap;
@@ -11,7 +12,14 @@
 
 .navTitle{
     width: 30%;
-    border: 2px solid red;
+    /* border: 2px solid red; */
+}
+
+.navLogo img {
+
+    height: 5rem;
+    width: 4rem;
+    /* border: 2px solid red; */
 }
 
 .navBtn {

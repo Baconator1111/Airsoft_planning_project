@@ -1,6 +1,7 @@
 import React, { Component } from 'react'
 import { Link } from 'react-router-dom'
 import './navbar.css'
+import Logo from './logo-01.png'
 
 export default class NavBar extends Component {
     constructor(props) {
@@ -23,12 +24,11 @@ export default class NavBar extends Component {
     }
 
     render() {
-        console.log(this.props.page)
         if (this.state.menu) {
             return (
                 <div>
                     <div className='navMain' >
-                        <Link to='/general_feed' ><div> Logo here </div></Link>
+                        <Link to='/general_feed' className='navLogo' ><img src={Logo} alt=""/></Link>
                         <h1 className='navTitle' >{this.props.page}</h1>
                         <button className='navBtn' onClick={() => this.handleMenuClose()} >menu icon</button>
                     </div>
@@ -45,7 +45,7 @@ export default class NavBar extends Component {
         }
         return (
             <div className='navMain' >
-                <Link to='/general_feed' >Logo here </Link>
+                <Link to='/general_feed' className='navLogo' ><img src={Logo} alt=""/></Link>
                 <h1 className='navTitle' >{this.props.page}</h1>
                 <button className='navBtn' onClick={() => this.handleMenuOpen()} >menu icon</button>
             </div>

@@ -1,0 +1,10 @@
+.commentUserImg img{
+    height: 2rem;
+    width: 2rem;
+    float: left;
+    margin-left: 10vw;
+}
+
+.commentUserName {
+    float: left;
+}
