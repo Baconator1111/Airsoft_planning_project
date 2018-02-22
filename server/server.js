@@ -9,8 +9,14 @@ const express = require('express'),
     commentsCtrl = require('./controllers/comments_ctrl'),
     userCtrl = require('./controllers/user_ctrl'),
     friendsCtrl = require('./controllers/friends_ctrl'),
-    bodyParser = require('body-parser')
-
+    socketsCtrl = require('./controllers/socketsCtrl'),
+    bodyParser = require('body-parser'),
+    stripe = require('stripe')(process.env.STRIPE_SECRET_KEY),
+    socket = require('socket.io'),
+    http = require('http')
+   
+    let connections = []
+    let users = []
 const app = express(),
     { SERVER_PORT, SESSION_SECRET, DOMAIN, CLIENT_ID, CLIENT_SECRET, CALLBACK_URL, DB_CONNECTION } = process.env
 
@@ -106,5 +112,81 @@ app.put("/api/addfriend", friendsCtrl.createFriendship)
 app.put("/api/comfirmfriend", friendsCtrl.confirmFriend)
 app.delete("/api/friend", friendsCtrl.deleteFriend)
 
+// Stripe
 
-app.listen(SERVER_PORT, () => console.log(`Server listening to port ${SERVER_PORT}`))
+app.post('/api/payment', function(req, res, next){
+    //convert amount to pennies
+    const amountArray = req.body.amount.toString().split('');
+    const pennies = [];
+    for (var i = 0; i < amountArray.length; i++) {
+      if(amountArray[i] === ".") {
+        if (typeof amountArray[i + 1] === "string") {
+          pennies.push(amountArray[i + 1]);
+        } else {
+          pennies.push("0");
+        }
+        if (typeof amountArray[i + 2] === "string") {
+          pennies.push(amountArray[i + 2]);
+        } else {
+          pennies.push("0");
+        }
+          break;
+      } else {
+          pennies.push(amountArray[i])
+      }
+    }
+    const convertedAmt = parseInt(pennies.join(''));
+  
+    const charge = stripe.charges.create({
+    amount: convertedAmt, // amount in cents, again
+    currency: 'usd',
+    source: req.body.token.id,
+    description: 'Test charge from react app'
+  }, function(err, charge) {
+      if (err) return res.sendStatus(500)
+      return res.sendStatus(200);
+    // if (err && err.type === 'StripeCardError') {
+    //   // The card has been declined
+    // }
+  });
+  });
+
+// Sockets stuff here
+const server = http.createServer( app ),
+      io = socket( server )
+
+io.on( 'connection' , function (socket) {
+    connections.push(socket);
+    console.log(`${socket.id} connected: ${connections.length} active connections.`)
+
+    socket.on('disconnect', function (data) {
+        connections.splice(connections.indexOf(socket), 1);
+        for (var i = 0; i < users.length; i++) {
+            if (users[i].id == socket.id) {
+                users.splice(i, 1);
+                break;
+            }
+        }
+        console.log(`Connection disconnected: ${connections.length} active connections.`)
+        io.sockets.emit('update users', { users: users });
+        if (!connections.length) {
+            messages = [];
+        }
+    })
+
+    socket.on('send message', function (data) {
+        let ts = new Date()
+        data.timestamp = `${ts.getHours()}:${ts.getMinutes()}`;
+        messages.push(data)
+        io.sockets.emit('message', messages)
+    })
+    socket.on('login', function (data) {
+        users.push({
+            name: data,
+            id: socket.id
+        })
+        socket.emit('get posts', postsCtrl.readPosts)
+    })
+})
+
+server.listen(SERVER_PORT, () => console.log(`Server listening to port ${SERVER_PORT}`))

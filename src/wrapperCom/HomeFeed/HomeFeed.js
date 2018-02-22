@@ -1,4 +1,5 @@
 import React, { Component } from 'react'
+import { socketConnect } from 'socket.io-react'
 import axios from 'axios'
 import sha1 from 'sha1'
 import superagent from 'superagent'
@@ -8,8 +9,9 @@ import './homefeed.css'
 import NavBar from '../../components/NavBar/NavBar'
 import ExpandableBox from '../../components/ExpandableBox/ExpandableBox'
 import PostTile from '../../components/PostTile/PostTile'
+import DonateBtn from '../../components/DonateBtn/DonateBtn'
 
-export default class HomeFeed extends Component {
+class HomeFeed extends Component {
     constructor(props) {
         super(props)
         this.state = {
@@ -24,6 +26,13 @@ export default class HomeFeed extends Component {
         axios.get('/api/posts')
             .then( ({data}) => this.setState({ currentPosts: data }))
     }
+
+    // componentDidMount() {
+    //     const { socket } = this.props
+
+    //     socket.on( 'get posts', data => this.setState({ currentPosts: data }) )
+
+    // }
 
     handleChange( input, prop ) {
         this.setState({
@@ -116,6 +125,7 @@ export default class HomeFeed extends Component {
 
                     })}
                 </div>
+                <DonateBtn />
             </div>
         ) } else {
             return (
@@ -123,8 +133,11 @@ export default class HomeFeed extends Component {
                     <NavBar page='General Feed' />
                     <ExpandableBox boxTitle='CreatePost'>{post}</ExpandableBox>
                     <h1>No new posts</h1>
+                    <DonateBtn />
                 </div>
             )
         }
     }
 }
+
+export default socketConnect( HomeFeed )

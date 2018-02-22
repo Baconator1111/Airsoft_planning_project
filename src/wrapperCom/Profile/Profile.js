@@ -2,10 +2,14 @@ import React, { Component } from 'react'
 import axios from 'axios'
 import sha1 from 'sha1'
 import superagent from 'superagent'
-
+import openSocket from 'socket.io-client';
 import './profile.css'
-
 import NavBar from '../../components/NavBar/NavBar'
+
+// const socket = openSocket(`http://localhost:${process.env.SOCKET_PORT}`)
+
+
+
 
 
 export default class UserInfo extends Component {
@@ -16,8 +20,14 @@ export default class UserInfo extends Component {
             firstName: '',
             lastName: '',
             email: '',
-            location: ''
+            location: '',
+            timestamp: 'None yet'
         }
+
+        // this.subscribeToTimer((err, timestamp) => this.setState({ 
+        //     timestamp 
+        //   }))
+        
     }
 
     componentDidMount(){
@@ -96,11 +106,19 @@ export default class UserInfo extends Component {
         axios.put('/api/user', body).catch( error => console.log( error ) )
     }
 
+    // subscribeToTimer( cb ) {
+
+    //     socket.on('timer', timestamp => cb(null, timestamp));
+    //     socket.emit('subscribeToTimer', 1000);
+
+    // } 
+
     render(){
         return (
             <div className='profileMain'>
                 <NavBar page= 'Profile' />
                 <img src={ this.state.userimg } alt=""/><input onChange={e => this.uploadFile( e.target.files )} type="file"/>
+                <p className="App-intro">This is the timer value: {this.state.timestamp}</p>
                 <div >First Name:  <input className='profile_input' onChange={(e)=>this.handleChange(e.target.value,'firstName')} value = {this.state.firstName}/></div>
                 <div >Last Name:  <input className='profile_input' onChange={(e)=>this.handleChange(e.target.value,'lastName')} value = {this.state.lastName}/></div>
                 <div >Email:   <input className='profile_input' onChange={(e)=>this.handleChange(e.target.value,'email')} value = {this.state.email}/></div>                

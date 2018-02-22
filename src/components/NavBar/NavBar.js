@@ -1,5 +1,7 @@
 import React, { Component } from 'react'
 import { Link } from 'react-router-dom'
+import FontAwesomeIcon from '@fortawesome/react-fontawesome'
+import { faBars } from '@fortawesome/fontawesome-free-solid'
 import './navbar.css'
 import Logo from './logo-01.png'
 
@@ -30,7 +32,7 @@ export default class NavBar extends Component {
                     <div className='navMain' >
                         <Link to='/general_feed' className='navLogo' ><img src={Logo} alt=""/></Link>
                         <h1 className='navTitle' >{this.props.page}</h1>
-                        <button className='navBtn' onClick={() => this.handleMenuClose()} >menu icon</button>
+                        <button className='navBtn' onClick={() => this.handleMenuClose()} ><FontAwesomeIcon icon={faBars} /></button>
                     </div>
                     <div className='navLinks' >
                         <Link to='/my_team'><div>Team</div></Link>
@@ -47,7 +49,7 @@ export default class NavBar extends Component {
             <div className='navMain' >
                 <Link to='/general_feed' className='navLogo' ><img src={Logo} alt=""/></Link>
                 <h1 className='navTitle' >{this.props.page}</h1>
-                <button className='navBtn' onClick={() => this.handleMenuOpen()} >menu icon</button>
+                <button className='navBtn' onClick={() => this.handleMenuOpen()} ><FontAwesomeIcon icon={faBars} /></button>
             </div>
         )
     }

@@ -1,4 +1,5 @@
 import React, { Component } from 'react'
+import { socketConnect } from 'socket.io-react'
 import axios from 'axios'
 import './postTile.css'
 
@@ -6,7 +7,7 @@ import ExpandableBox from '../../components/ExpandableBox/ExpandableBox'
 import CommentTile from '../../components/CommentTile/CommentTile'
 
 
-export default class PostTile extends Component {
+class PostTile extends Component {
     constructor(props) {
         super(props)
         this.state = {
@@ -21,6 +22,11 @@ export default class PostTile extends Component {
         axios.get(`/api/comments/${this.props.post.post_id}`)
             .then(({ data }) => this.setState({ comments: data }))
     }
+
+    // componentDidMount() {
+    //     const { socket } = this.props
+    //     socket.on( 'get comments',  data => this.setState({ comments: data }))
+    // }
 
     handleClickDelete(post) {
         axios.put('/api/posts/delete', post)
@@ -102,3 +108,5 @@ export default class PostTile extends Component {
 
     }
 }  
+
+export default socketConnect( PostTile )
