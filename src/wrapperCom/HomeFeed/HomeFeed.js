@@ -66,8 +66,8 @@ class HomeFeed extends Component {
             axios.post('/api/posts', body)
                 .then(() => {
                     this.props.socket.emit('post', { user_id: this.state.userId })
-                    this.setState({ close: true })
                 })
+                this.setState({ close: true }, ()=> console.log( this.state.close ) )
         }
     }
 
@@ -134,7 +134,7 @@ class HomeFeed extends Component {
             return (
                 <div>
                     <NavBar page='General Feed' />
-                    <ExpandableBox boxTitle='CreatePost'>{post}</ExpandableBox>
+                    <ExpandableBox close={ this.state.close } boxTitle='CreatePost'>{post}</ExpandableBox>
                     <div className='tiles'>
                         {this.state.currentPosts.map((post) => {
                             return (

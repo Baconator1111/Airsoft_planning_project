@@ -197,10 +197,10 @@ io.on('connection', function (socket) {
 
         const db = app.get('db'),
             { post_id_com } = data
-            console.log( post_id_com )
+            // console.log( post_id_com )
         db.get_post_comments(post_id_com)
             .then(comments => {
-                console.log( comments )
+                // console.log( comments )
                 socket.emit(`send comments ${ post_id_com }`, comments)
             })
     })

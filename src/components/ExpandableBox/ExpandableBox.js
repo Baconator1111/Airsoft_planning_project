@@ -10,20 +10,27 @@ export default class ExpandableBox extends Component {
         }
     }
 
-    componentDidMount() {
-        if( this.props.close ){
-            this.handleClickedBox()
+    componentWillReceiveProps( newProps ){
+        if( newProps.close ) {
+            this.setState((prevProp) => {
+                return {
+                    opened: false
+                }
+            })
         }
     }
 
     handleClickedBox() {
-        this.setState({ opened: !this.state.opened })
+        console.log('clicked box hit')
+        this.setState((prevProp) => {
+            return {
+                opened: !prevProp.opened
+            }
+        })
     }
 
     render() {
-        if( this.props.close ){
-            this.setState({ opened: false })
-        }
+        console.log( this.props )
         return (
             <div>
                 <button>
