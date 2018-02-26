@@ -4,7 +4,9 @@ module.exports = {
         const { user_id } = req.user
 
         db.get_posts(user_id)
-            .then(posts => res.status(200).send(posts))
+            .then(posts =>{ 
+                return posts
+            })
 
     },
     createPost: function (req, res) {
@@ -14,6 +16,8 @@ module.exports = {
 
         db.create_post([user_id, post_title, post_img, post_body])
             .then(() => res.status(200).send('post created'))
+
+
     },
     updatePost: function (req, res) {
         const db = req.app.get('db'),

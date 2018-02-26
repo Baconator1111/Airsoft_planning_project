@@ -1,6 +1,7 @@
 import React, { Component } from 'react';
 import StripeCheckout from 'react-stripe-checkout';
 import axios from 'axios';
+import NavBar from './../NavBar/NavBar'
 
 class Donate extends Component {
     constructor( props ){
@@ -34,6 +35,7 @@ class Donate extends Component {
       }
     return (
       <div className="donateMain">
+          <NavBar />
         $<input onChange={ e => this.handleAmount( e.target.value )} type="number" min={0}/>
         <StripeCheckout
           token={this.onToken}

@@ -7,7 +7,9 @@ import App from './App';
 import { SocketProvider } from 'socket.io-react';
 import io from 'socket.io-client';
 
-const socket = io.connect(`http://localhost:${ process.env.SERVER_PORT }`);
+require('dotenv').config()
+
+const socket = io.connect(`http://localhost:3080`);
 
 ReactDOM.render(
     <SocketProvider socket={ socket }>
