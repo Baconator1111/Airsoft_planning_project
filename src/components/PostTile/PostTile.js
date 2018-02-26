@@ -19,14 +19,17 @@ class PostTile extends Component {
     }
 
     componentDidMount() {
-        axios.get(`/api/comments/${this.props.post.post_id}`)
-            .then(({ data }) => this.setState({ comments: data }))
+        // axios.get(`/api/comments/${this.props.post.post_id}`)
+        //     .then(({ data }) => this.setState({ comments: data }))
+        const { socket } = this.props
+        const post_id_com = this.props.post.post_id
+        socket.on(`send comments ${ post_id_com }`, data => {
+            console.log( data )
+            this.setState({ comments: data })
+            
+        })
+        socket.emit('get comments', { post_id_com })
     }
-
-    // componentDidMount() {
-    //     const { socket } = this.props
-    //     socket.on( 'get comments',  data => this.setState({ comments: data }))
-    // }
 
     handleClickDelete(post) {
         axios.put('/api/posts/delete', post)
@@ -49,15 +52,21 @@ class PostTile extends Component {
     }
 
     handleSubmitComment() {
+        const { socket } = this.props
         let body = {
             post_id_com: this.props.post.post_id,
             com_title: this.state.com_title,
             com_body: this.state.com_body
         }
         axios.post('/api/comments', body)
+            .then(resp => {
+                const post_id_com = this.props.post.post_id
+                socket.emit('get comments', { post_id_com })
+            })
     }
 
     render() {
+        // console.log(this.state.comments)
         const comments = (
             <div className='creatCommentExpBox' >
                 {this.state.comments.map((comment) => {
@@ -73,40 +82,24 @@ class PostTile extends Component {
                 <button onClick={() => this.handleSubmitComment()} >Submit</button>
             </div>)
         const post = this.props.post
-        if (post.post_img) {
-            return (
-                <div key={post.post_id} className='postDisplay'>
-                    <div className='postUserImg'><img src={post.user_img} alt="" /></div>
-                    <div className='postBtn' >
-                        <button className='filter' onClick={() => this.handleClickFilter(post)}>Filter Out</button>
-                        <button className='save' onClick={() => this.handleClickSave(post)}>Save</button>
-                        <button className='save' onClick={() => this.handleClickDelete(post)}>Delete</button>
-                    </div>
-                    <div className='postUserName'>{post.user_name}</div>
-                    <div className='postTitle'>{post.post_title}</div>
-                    <div className='postImg'><img src={post.post_img} alt="" /></div>
-                    <div className='postBody'>{post.post_body}</div>
-                    <ExpandableBox boxTitle='Comments'>{comments}</ExpandableBox>
+        return (
+            <div key={post.post_id} className='postDisplay'>
+                <div className='postUserImg'><img src={post.user_img} alt="" /></div>
+                <div className='postBtn' >
+                    <button className='filter' onClick={() => this.handleClickFilter(post)}>Filter Out</button>
+                    <button className='save' onClick={() => this.handleClickSave(post)}>Save</button>
+                    <button className='save' onClick={() => this.handleClickDelete(post)}>Delete</button>
                 </div>
-            )
-        } else {
-            return (
-                <div key={post.post_id} className='postDisplay'>
-                    <div className='postUserImg'><img src={post.user_img} alt="" /></div>
-                    <div className='postBtn' >
-                        <button className='filter' onClick={() => this.handleClickFilter(post)}>Filter Out</button>
-                        <button className='save' onClick={() => this.handleClickSave(post)}>Save</button>
-                        <button className='save' onClick={() => this.handleClickDelete(post)}>Delete</button>
-                    </div>
-                    <div className='postUserName'>{post.user_name}</div>
-                    <div className='postTitle'>{post.post_title}</div>
-                    <div className='postBody'>{post.post_body}</div>
-                    <ExpandableBox boxTitle='Comments'>{comments}</ExpandableBox>
-                </div>
-            )
-        }
+                <div className='postUserName'>{post.user_name}</div>
+                <div className='postTitle'>{post.post_title}</div>
+                { post.post_img ? <div className='postImg'><img src={post.post_img} alt="" /></div> : null }
+                <div className='postBody'>{post.post_body}</div>
+                <ExpandableBox boxTitle='Comments'>{comments}</ExpandableBox>
+            </div>
+        )
+
 
     }
-}  
+}
 
-export default socketConnect( PostTile )
+export default socketConnect(PostTile)

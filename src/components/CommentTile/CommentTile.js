@@ -11,6 +11,7 @@ export default class CommentTile extends Component {
 
     render(){
         const comment = this.props.comment
+        console.log( 'comment Tile hit' )
         return (
             <div key={comment.comment_id} className='commentDisplay'>
                 <div className='commentUserImg'><img src={comment.user_img} alt=""/></div>

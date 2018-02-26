@@ -5,23 +5,23 @@ import NavBar from '../../components/NavBar/NavBar'
 import PostTile from '../../components/PostTile/PostTile'
 
 export default class SavedPosts extends Component {
-    constructor( props ) {
-        super( props )
+    constructor(props) {
+        super(props)
         this.state = {
             savedPosts: []
         }
     }
 
     componentDidMount() {
-        axios.get( '/api/posts/save' )
-            .then( ({ data }) => this.setState({ savedPosts: data }) )
+        axios.get('/api/posts/save')
+            .then(({ data }) => this.setState({ savedPosts: data }))
     }
 
     render() {
-        if( this.state.savedPosts[0] ) {
+        if (this.state.savedPosts[0]) {
             return (
                 <div>
-                    <NavBar page='Saved Posts'/>
+                    <NavBar page='Saved Posts' />
                     <div className='tiles'>
                         {this.state.savedPosts.map((post) => {
                             return (
@@ -29,14 +29,17 @@ export default class SavedPosts extends Component {
                                     <PostTile post={post} />
                                 </div>
                             )
-    
+
                         })}
                     </div>
                 </div>
             )
         } else {
             return (
-                <h1> Loading </h1>
+                <div>
+                    <NavBar page='Saved Posts' />
+                    <h1> Loading </h1>
+                </div>
             )
         }
     }

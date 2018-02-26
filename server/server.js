@@ -65,7 +65,7 @@ app.get('/auth', passport.authenticate('auth0'))
 app.get('/auth/callback', (req, res, next) => {
 
     const authCB = passport.authenticate('auth0', {
-        successRedirect: 'http://localhost:3000/#/profile'
+        successRedirect: 'http://192.168.2.209:3000/#/profile'
     })
     authCB(req, res, next)
 })
@@ -79,7 +79,7 @@ app.get('/auth/me', (req, res) => {
 
 app.get('/logout', (req, res) => {
     req.logout()
-    res.redirect('http://localhost:3000/#/')
+    res.redirect('http://192.168.2.209:3000/#/')
 }
 )
 
@@ -180,15 +180,13 @@ io.on('connection', function (socket) {
 
     socket.on('post', function (data) {
         const db = app.get('db')
-        console.log(data.user_id)
         db.get_posts(data.user_id)
             .then(posts => {
-                console.log(posts)
                 socket.emit('get posts', posts)
             }).catch(err => console.log(err))
     })
 
-    socket.on('comment', function (data) {
+    socket.on('get comments', function (data) {
         // const db = app.get('db')
         // console.log(data.user_id)
         // db.get_posts(data.user_id)
@@ -197,12 +195,13 @@ io.on('connection', function (socket) {
         //         socket.emit('get posts', posts)
         //     }).catch( err => console.log( err ) )
 
-        const db = req.app.get('db'),
+        const db = app.get('db'),
             { post_id_com } = data
-
+            console.log( post_id_com )
         db.get_post_comments(post_id_com)
             .then(comments => {
-                socket.emit('get comments', comments)
+                console.log( comments )
+                socket.emit(`send comments ${ post_id_com }`, comments)
             })
     })
 })

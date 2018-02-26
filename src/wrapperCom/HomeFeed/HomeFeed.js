@@ -123,7 +123,7 @@ class HomeFeed extends Component {
     }
 
     render() {
-        console.log( this.state.currentPosts )
+        // console.log( this.state.currentPosts )
         const post = <div className='creatPostExpBox' >
             <input onChange={e => this.handleChange(e.target.value, 'post_title')} className='inputPostTitle' type="text" placeholder='Post Title Here' />
             <Dropzone onDrop={this.uploadFile.bind(this)} />

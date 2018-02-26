@@ -9,7 +9,7 @@ import io from 'socket.io-client';
 
 require('dotenv').config()
 
-const socket = io.connect(`http://localhost:3080`);
+const socket = io.connect(`http://192.168.2.209:3080`);
 
 ReactDOM.render(
     <SocketProvider socket={ socket }>
