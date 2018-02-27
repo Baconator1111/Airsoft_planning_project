@@ -6,6 +6,13 @@ module.exports = {
         db.get_friends( user_id )
             .then( friends => res.status(200).send( friends ) )        
     },
+    readPendingFriends: function( req, res ) {
+        const db = req.app.get( 'db' ),
+            { user_id } = req.user
+
+        db.get_friend_requests( user_id )
+            .then( friendReq => res.status(200).send( friendReq ) )        
+    },
     searchNewFriends: function( req, res ) {
         const db = req.app.get( 'db' ),
             { user_id } = req.user,
@@ -17,17 +24,17 @@ module.exports = {
     createFriendship: function( req, res ) {
         const db = req.app.get( 'db' ),
             { user_id } = req.user,
-            { friend_id } = req.body
+            { fnd_user_id } = req.body
 
-            db.search_friends([ user_id, friend_id ])
+            db.create_fnd_usership([ user_id, fnd_user_id ])
             .then( () => res.status(200).send( "Friendship Pending" ) )
     },
     confirmFriend: function( req, res ) {
         const db = req.app.get( 'db' ),
             { user_id } = req.user,
-            { friend_id } = req.body
+            { fnd_user_id, fnd_id } = req.body
 
-        db.accept_friendship([ user_id, friend_id ])
+        db.accept_friendship([ user_id, fnd_user_id, fnd_id ])
             .then( () => res.status(200).send( "Friend Accepted" ) ) 
 
     },

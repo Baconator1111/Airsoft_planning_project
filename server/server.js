@@ -107,6 +107,7 @@ app.post("/api/comments", commentsCtrl.createComment)
 app.delete("/api/comments", commentsCtrl.deleteComment)
 
 app.get("/api/friends", friendsCtrl.readCurrentFriends)
+app.get("/api/pendingfriends", friendsCtrl.readPendingFriends)
 app.put("/api/newfriends", friendsCtrl.searchNewFriends)
 app.put("/api/addfriend", friendsCtrl.createFriendship)
 app.put("/api/comfirmfriend", friendsCtrl.confirmFriend)
@@ -187,14 +188,6 @@ io.on('connection', function (socket) {
     })
 
     socket.on('get comments', function (data) {
-        // const db = app.get('db')
-        // console.log(data.user_id)
-        // db.get_posts(data.user_id)
-        //     .then(posts =>{ 
-        //         console.log( posts )
-        //         socket.emit('get posts', posts)
-        //     }).catch( err => console.log( err ) )
-
         const db = app.get('db'),
             { post_id_com } = data
             // console.log( post_id_com )
@@ -202,6 +195,17 @@ io.on('connection', function (socket) {
             .then(comments => {
                 // console.log( comments )
                 socket.emit(`send comments ${ post_id_com }`, comments)
+            })
+    })
+
+    socket.on('get requests', function (data) {
+        const db = app.get('db'),
+            { user_id } = data
+            console.log( user_id )
+        db.get_friend_requests(user_id)
+            .then(requests => {
+                console.log( requests )
+                socket.emit('friend requests', requests)
             })
     })
 })

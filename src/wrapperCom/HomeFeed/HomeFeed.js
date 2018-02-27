@@ -32,9 +32,7 @@ class HomeFeed extends Component {
             .then(user => {
                 let userInfo
                 userInfo = user.data
-                console.log(userInfo)
                 this.setState({ userId: user.data.user_id })
-                console.log(this.state.userId)
                 socket.emit('post', { user_id: this.state.userId })
             })
 
