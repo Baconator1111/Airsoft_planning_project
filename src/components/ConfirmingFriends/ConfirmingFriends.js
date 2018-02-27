@@ -24,12 +24,17 @@ class ConfirmingFriends extends Component {
 
         socket.on('friend requests', data => {
             this.setState({ pendingFriends: data })
-            console.log(this.state.pendingFriends)
+            console.log(this.state.pendingFriends, data)
         })
     }
 
-    acceptFriendRequest(fnd_id) {
-        axios.put( '/api/confirmfriend', fnd_id )
+    acceptFriendRequest(fnd_id, user_id) {
+        const { socket } = this.props
+        let body = {
+            fnd_id,
+            fnd_user_id: user_id
+        }        
+        axios.put( '/api/confirmfriend', body )
             .then( () => {
                 socket.emit('get requests', { user_id: this.state.userId })
             } )
@@ -39,16 +44,16 @@ class ConfirmingFriends extends Component {
         return (
             <div>
                 <div>Friend Requests</div>
-                {this.state.results[0] ? this.state.results.map(friendRequest => {
+                {this.state.pendingFriends[0] ? this.state.pendingFriends.map(friendRequest => {
                     return (
                         <div>
                             <img src={friendRequest.user_img} alt="" />
                             <div>{friendRequest.first_name}</div>
                             <div>{friendRequest.last_name}</div>
-                            <button onClick={() => this.acceptFriendRequest(friendRequest.fnd_id)} className='confirmFriendBtn' >Confirm</button>
+                            <button onClick={() => this.acceptFriendRequest(friendRequest.fnd_id, friendRequest.user_id)} className='confirmFriendBtn' >Confirm</button>
                         </div>
                     )
-                }) : null}
+                }) : 'Currently you have no pending Friend Requests'}
             </div>
         )
     }

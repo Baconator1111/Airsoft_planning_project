@@ -14,7 +14,7 @@ class Donate extends Component {
   onToken = (token) => {
     token.card = void 0;
     console.log('token', token);
-    axios.post(`http://localhost:${process.env.SERVER_PORT}/api/payment`, { token, amount: 100 } ).then(response => console.log( response ));
+    axios.post(`/api/payment`, { token, amount: 100 } ).then(response => console.log( response ));
   }
 
   handleAmount ( input ) {
@@ -39,7 +39,7 @@ class Donate extends Component {
         $<input onChange={ e => this.handleAmount( e.target.value )} type="number" min={0}/>
         <StripeCheckout
           token={this.onToken}
-          stripeKey={ process.env.STRIPE_PUBLIC_KEY }
+          stripeKey={ process.env.REACT_APP_STRIPE_PUBLIC_KEY }
           amount={this.state.amount}
         /> or
         <a href={paypalLink} ><button>PayPal</button></a>

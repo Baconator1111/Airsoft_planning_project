@@ -20,6 +20,7 @@ let users = []
 const app = express(),
     { SERVER_PORT, SESSION_SECRET, DOMAIN, CLIENT_ID, CLIENT_SECRET, CALLBACK_URL, DB_CONNECTION } = process.env
 
+//   Auth0 here
 
 app.use(session({
     secret: SESSION_SECRET,
@@ -83,7 +84,7 @@ app.get('/logout', (req, res) => {
 }
 )
 
-//frontend` endpoints start here
+//  Frontend Endpoints start here
 app.use(bodyParser.json())
 
 app.get("/api/userinfo", userCtrl.getUserInfo)
@@ -110,10 +111,10 @@ app.get("/api/friends", friendsCtrl.readCurrentFriends)
 app.get("/api/pendingfriends", friendsCtrl.readPendingFriends)
 app.put("/api/newfriends", friendsCtrl.searchNewFriends)
 app.put("/api/addfriend", friendsCtrl.createFriendship)
-app.put("/api/comfirmfriend", friendsCtrl.confirmFriend)
-app.delete("/api/friend", friendsCtrl.deleteFriend)
+app.put("/api/confirmfriend", friendsCtrl.confirmFriend)
+app.put("/api/friend/delete", friendsCtrl.deleteFriend)
 
-// Stripe
+// Stripe Payment
 
 app.post('/api/payment', function (req, res, next) {
     //convert amount to pennies
@@ -152,7 +153,7 @@ app.post('/api/payment', function (req, res, next) {
     });
 });
 
-// Sockets stuff here
+// Socket connections
 const server = http.createServer(app),
     io = socket(server)
 
@@ -190,22 +191,33 @@ io.on('connection', function (socket) {
     socket.on('get comments', function (data) {
         const db = app.get('db'),
             { post_id_com } = data
-            // console.log( post_id_com )
+        // console.log( post_id_com )
         db.get_post_comments(post_id_com)
             .then(comments => {
                 // console.log( comments )
-                socket.emit(`send comments ${ post_id_com }`, comments)
+                socket.emit(`send comments ${post_id_com}`, comments)
             })
     })
 
     socket.on('get requests', function (data) {
         const db = app.get('db'),
             { user_id } = data
-            console.log( user_id )
+        console.log(user_id)
         db.get_friend_requests(user_id)
             .then(requests => {
-                console.log( requests )
+                console.log(requests)
                 socket.emit('friend requests', requests)
+            })
+    })
+
+    socket.on('get friends', function (data) {
+        const db = app.get('db'),
+            { user_id } = data
+        console.log(user_id)
+        db.get_friends(user_id)
+            .then(currentFriends => {
+                console.log(currentFriends)
+                socket.emit('current friends', currentFriends)
             })
     })
 })
