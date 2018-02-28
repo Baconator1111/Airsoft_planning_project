@@ -5,6 +5,7 @@ import './postTile.css'
 
 import ExpandableBox from '../../components/ExpandableBox/ExpandableBox'
 import CommentTile from '../../components/CommentTile/CommentTile'
+import EditPost from '../EditPost/EditPost'
 
 
 class PostTile extends Component {
@@ -13,30 +14,40 @@ class PostTile extends Component {
         this.state = {
             comments: [],
             com_title: '',
-            com_body: ''
-
+            com_body: '',
+            edit: false,
+            userId: null
         }
+        this.handleClickEditClose = this.handleClickEditClose.bind(this)
     }
 
     componentDidMount() {
-        // axios.get(`/api/comments/${this.props.post.post_id}`)
-        //     .then(({ data }) => this.setState({ comments: data }))
+        axios.get("/api/userinfo")
+            .then(user => {
+                let userInfo
+                userInfo = user.data
+                this.setState({ userId: user.data.user_id })
+            })
+
         const { socket } = this.props
         const post_id_com = this.props.post.post_id
-        socket.on(`send comments ${ post_id_com }`, data => {
-            console.log( data )
+        socket.on(`send comments ${post_id_com}`, data => {
+            console.log(data)
             this.setState({ comments: data })
-            
         })
         socket.emit('get comments', { post_id_com })
     }
 
     handleClickDelete(post) {
+        const { socket } = this.props
         axios.put('/api/posts/delete', post)
+            .then(() => socket.emit('post', { user_id: this.state.userId }))
     }
 
     handleClickFilter(post) {
+        const { socket } = this.props
         axios.post('/api/posts/filter', post)
+            .then(() => socket.emit('post', { user_id: this.state.userId }))
     }
 
     handleClickSave(post) {
@@ -65,6 +76,14 @@ class PostTile extends Component {
             })
     }
 
+    handleClickEdit() {
+        this.setState({ edit: true })
+    }
+
+    handleClickEditClose() {
+        this.setState({ edit: false })
+    }
+
     render() {
         // console.log(this.state.comments)
         const comments = (
@@ -82,21 +101,30 @@ class PostTile extends Component {
                 <button onClick={() => this.handleSubmitComment()} >Submit</button>
             </div>)
         const post = this.props.post
-        return (
-            <div key={post.post_id} className='postDisplay'>
-                <div className='postUserImg'><img src={post.user_img} alt="" /></div>
-                <div className='postBtn' >
-                    <button className='filter' onClick={() => this.handleClickFilter(post)}>Filter Out</button>
-                    <button className='save' onClick={() => this.handleClickSave(post)}>Save</button>
-                    <button className='save' onClick={() => this.handleClickDelete(post)}>Delete</button>
+        if (!this.state.edit) {
+            return (
+                <div key={post.post_id} className='postDisplay'>
+                    <div className='postUserImg'><img src={post.user_img} alt="" /></div>
+                    <div className='postBtn' >
+                        <button className='post_filter' onClick={() => this.handleClickFilter(post)}>Remove From View</button>
+                        <button className='post_save' onClick={() => this.handleClickSave(post)}>Save Post</button>
+                        {this.state.userId === post.user_id_posts ? <button className='post_edit_form' onClick={() => this.handleClickEdit()} >Edit</button> : null}
+                        {this.state.userId === post.user_id_posts ? <button className='post_save' onClick={() => this.handleClickDelete(post)}>Delete Post</button> : null}
+                    </div>
+                    <div className='postUserName'>{post.user_name}</div>
+                    <div className='postTitle'>{post.post_title}</div>
+                    {post.post_img ? <div className='postImg'><img src={post.post_img} alt="" /></div> : null}
+                    <div className='postBody'>{post.post_body}</div>
+                    <ExpandableBox boxTitle='Comments'>{comments}</ExpandableBox>
                 </div>
-                <div className='postUserName'>{post.user_name}</div>
-                <div className='postTitle'>{post.post_title}</div>
-                { post.post_img ? <div className='postImg'><img src={post.post_img} alt="" /></div> : null }
-                <div className='postBody'>{post.post_body}</div>
-                <ExpandableBox boxTitle='Comments'>{comments}</ExpandableBox>
-            </div>
-        )
+            )
+        } else {
+            return (
+                <div>
+                    <EditPost handleClickEditClose={ this.handleClickEditClose } >{ post }</EditPost>
+                </div>
+            )
+        }
 
 
     }
