@@ -30,7 +30,7 @@ export default class NavBar extends Component {
             return (
                 <div>
                     <div className='navMain' >
-                        <Link to='/general_feed' className='navLogo' ><img src={Logo} alt=""/></Link>
+                        <Link to='/general_feed' className='navLogo' ><img src={Logo} alt="" /></Link>
                         <h1 className='navTitle' >{this.props.page}</h1>
                         <button className='navBtn' onClick={() => this.handleMenuClose()} ><FontAwesomeIcon icon={faBars} /></button>
                     </div>
@@ -47,7 +47,7 @@ export default class NavBar extends Component {
         }
         return (
             <div className='navMain' >
-                <Link to='/general_feed' className='navLogo' ><img src={Logo} alt=""/></Link>
+                <Link to='/general_feed' className='navLogo' ><img src={Logo} alt="" /></Link>
                 <h1 className='navTitle' >{this.props.page}</h1>
                 <button className='navBtn' onClick={() => this.handleMenuOpen()} ><FontAwesomeIcon icon={faBars} /></button>
             </div>

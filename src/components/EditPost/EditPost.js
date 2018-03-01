@@ -64,7 +64,7 @@ class EditPost extends Component {
         const signature = sha1(paramsStr)
 
         const params = {
-            'api_key': '163862536217352',
+            'api_key': process.env.REACT_APP_CLOUDNARY_KEY,
             'timestamp': timeStamp,
             'upload_preset': uploadPreset,
             'signature': signature
@@ -83,8 +83,8 @@ class EditPost extends Component {
                 return
             }
 
-            console.log('UPLOAD COMLETE: ' + JSON.stringify(res.body));
-            console.log(res.body.secure_url)
+            // console.log('UPLOAD COMLETE: ' + JSON.stringify(res.body));
+            // console.log(res.body.secure_url)
             this.setState({ post_img: res.body.secure_url })
 
         });

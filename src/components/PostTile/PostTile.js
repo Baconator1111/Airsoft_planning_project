@@ -32,7 +32,7 @@ class PostTile extends Component {
         const { socket } = this.props
         const post_id_com = this.props.post.post_id
         socket.on(`send comments ${post_id_com}`, data => {
-            console.log(data)
+            // console.log(data)
             this.setState({ comments: data })
         })
         socket.emit('get comments', { post_id_com })
@@ -121,7 +121,7 @@ class PostTile extends Component {
         } else {
             return (
                 <div>
-                    <EditPost handleClickEditClose={ this.handleClickEditClose } >{ post }</EditPost>
+                    <EditPost handleClickEditClose={this.handleClickEditClose} >{post}</EditPost>
                 </div>
             )
         }

@@ -43,7 +43,7 @@ class HomeFeed extends Component {
         const { socket } = this.props
         socket.on('get posts', data => {
             this.setState({ currentPosts: data })
-            console.log( this.state.currentPosts )
+            // console.log( this.state.currentPosts )
         })
     }
 
@@ -65,7 +65,7 @@ class HomeFeed extends Component {
                 .then(() => {
                     this.props.socket.emit('post', { user_id: this.state.userId })
                 })
-                this.setState({ close: true }, ()=> console.log( this.state.close ) )
+            this.setState({ close: true })
         }
     }
 
@@ -82,7 +82,7 @@ class HomeFeed extends Component {
         const signature = sha1(paramsStr)
 
         const params = {
-            'api_key': '163862536217352',
+            'api_key': process.env.REACT_APP_CLOUDNARY_KEY,
             'timestamp': timeStamp,
             'upload_preset': uploadPreset,
             'signature': signature,
@@ -102,21 +102,21 @@ class HomeFeed extends Component {
                 return
             }
 
-            console.log('UPLOAD COMLETE: ' + JSON.stringify(res.body));
-            console.log(res.body.secure_url)
+            // console.log('UPLOAD COMLETE: ' + JSON.stringify(res.body));
+            // console.log(res.body.secure_url)
             this.setState({ images: res.body.secure_url })
 
         });
 
         let formData = new FormData();
-        formData.append("api_key", '163862536217352');
+        formData.append("api_key", process.env.REACT_APP_CLOUDNARY_KEY);
         formData.append("file", image);
         formData.append("timestamp", timeStamp);
         formData.append("upload_preset", uploadPreset);
 
 
         axios.post(url, formData)
-            .then(({ data }) => console.log('Upload Complete: ' + data))
+        // .then(({ data }) => console.log('Upload Complete: ' + data))
 
     }
 
@@ -132,7 +132,7 @@ class HomeFeed extends Component {
             return (
                 <div>
                     <NavBar page='General Feed' />
-                    <ExpandableBox close={ this.state.close } boxTitle='CreatePost'>{post}</ExpandableBox>
+                    <ExpandableBox close={this.state.close} boxTitle='CreatePost'>{post}</ExpandableBox>
                     <div className='tiles'>
                         {this.state.currentPosts.map((post) => {
                             return (
@@ -150,7 +150,7 @@ class HomeFeed extends Component {
             return (
                 <div>
                     <NavBar page='General Feed' />
-                    <ExpandableBox close={ this.state.close } boxTitle='CreatePost'>{post}</ExpandableBox>
+                    <ExpandableBox close={this.state.close} boxTitle='CreatePost'>{post}</ExpandableBox>
                     <h1>No new posts</h1>
                     <DonateBtn />
                 </div>

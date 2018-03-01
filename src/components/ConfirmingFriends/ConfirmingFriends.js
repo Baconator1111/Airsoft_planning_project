@@ -24,7 +24,7 @@ class ConfirmingFriends extends Component {
 
         socket.on('friend requests', data => {
             this.setState({ pendingFriends: data })
-            console.log(this.state.pendingFriends, data)
+            // console.log(this.state.pendingFriends, data)
         })
     }
 
@@ -33,11 +33,11 @@ class ConfirmingFriends extends Component {
         let body = {
             fnd_id,
             fnd_user_id: user_id
-        }        
-        axios.put( '/api/confirmfriend', body )
-            .then( () => {
+        }
+        axios.put('/api/confirmfriend', body)
+            .then(() => {
                 socket.emit('get requests', { user_id: this.state.userId })
-            } )
+            })
     }
 
     render() {

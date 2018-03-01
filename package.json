@@ -1,6 +1,6 @@
 {
   "name": "airsoft-planner-project",
-  "proxy": "http://192.168.2.209:3080",
+  "proxy": "http://172.19.245.30:3080",
   "main": "server/server.js",
   "version": "0.1.0",
   "private": true,

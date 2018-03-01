@@ -10,8 +10,8 @@ export default class ExpandableBox extends Component {
         }
     }
 
-    componentWillReceiveProps( newProps ){
-        if( newProps.close ) {
+    componentWillReceiveProps(newProps) {
+        if (newProps.close) {
             this.setState((prevProp) => {
                 return {
                     opened: false
@@ -21,7 +21,7 @@ export default class ExpandableBox extends Component {
     }
 
     handleClickedBox() {
-        console.log('clicked box hit')
+        // console.log('clicked box hit')
         this.setState((prevProp) => {
             return {
                 opened: !prevProp.opened
@@ -30,7 +30,7 @@ export default class ExpandableBox extends Component {
     }
 
     render() {
-        console.log( this.props )
+        // console.log( this.props )
         return (
             <div>
                 <button>

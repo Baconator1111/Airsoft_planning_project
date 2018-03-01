@@ -16,25 +16,26 @@ class SearchFriends extends Component {
     handleSearch(input) {
         let names = input.split(' ')
         let body = {}
-        this.setState({ first_name: names[0], last_name: names[1] }, ()=> {
+        this.setState({ first_name: names[0], last_name: names[1] }, () => {
             body.first_name = this.state.first_name
             body.last_name = this.state.last_name
             axios.put('/api/newfriends', body)
                 .then(({ data }) => {
-                    console.log( data )
-                    this.setState({ results: data })})
+                    // console.log( data )
+                    this.setState({ results: data })
+                })
         })
     }
 
     handleNewFriendship(fnd_user_id) {
-        console.log( fnd_user_id )
+        // console.log( fnd_user_id )
         const { socket } = this.props
         const { first_name, last_name } = this.state
         let body = {
             first_name,
             last_name
         }
-        axios.put('/api/addfriend', {fnd_user_id}).then(() => {
+        axios.put('/api/addfriend', { fnd_user_id }).then(() => {
             socket.emit('get requests', { user_id: null })
             axios.put('/api/newfriends', body)
                 .then(({ data }) => {

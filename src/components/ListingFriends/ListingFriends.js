@@ -24,19 +24,19 @@ class ListingFriends extends Component {
 
         socket.on('current friends', data => {
             this.setState({ currentFriends: data })
-            console.log(this.state.currentFriends)
+            // console.log(this.state.currentFriends)
         })
     }
 
     handleDeleteFriendship(fnd_user_id) {
-        console.log( fnd_user_id )
-        const { socket } = this.props        
+        // console.log( fnd_user_id )
+        const { socket } = this.props
         const body = {
             fnd_user_id: fnd_user_id
         }
         axios.put('/api/friend/delete', body)
             .then(() => {
-                socket.emit('get friends', { user_id: this.state.userId })                
+                socket.emit('get friends', { user_id: this.state.userId })
             })
     }
 

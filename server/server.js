@@ -66,7 +66,7 @@ app.get('/auth', passport.authenticate('auth0'))
 app.get('/auth/callback', (req, res, next) => {
 
     const authCB = passport.authenticate('auth0', {
-        successRedirect: 'http://192.168.2.209:3000/#/profile'
+        successRedirect: process.env.LOGIN
     })
     authCB(req, res, next)
 })
@@ -80,7 +80,7 @@ app.get('/auth/me', (req, res) => {
 
 app.get('/logout', (req, res) => {
     req.logout()
-    res.redirect('http://192.168.2.209:3000/#/')
+    res.redirect(process.env.LOGOUT)
 }
 )
 
