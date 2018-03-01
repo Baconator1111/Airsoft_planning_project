@@ -21,6 +21,7 @@ const app = express(),
     { SERVER_PORT, SESSION_SECRET, DOMAIN, CLIENT_ID, CLIENT_SECRET, CALLBACK_URL, DB_CONNECTION } = process.env
 
 //   Auth0 here
+app.use( express.static( `${__dirname}/../build` ) )
 
 app.use(session({
     secret: SESSION_SECRET,
