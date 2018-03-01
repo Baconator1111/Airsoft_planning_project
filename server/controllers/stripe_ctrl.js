@@ -1,5 +1,3 @@
-require('dotenv').config()
-
 module.exports = {
     obtainUserStripeId: function( req, res ) {
         const stripeAccountId = null 

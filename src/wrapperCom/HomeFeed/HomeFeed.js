@@ -11,7 +11,6 @@ import ExpandableBox from '../../components/ExpandableBox/ExpandableBox'
 import PostTile from '../../components/PostTile/PostTile'
 import DonateBtn from '../../components/DonateBtn/DonateBtn'
 
-require('dotenv').config()
 
 
 class HomeFeed extends Component {
