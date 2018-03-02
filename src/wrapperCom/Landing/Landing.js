@@ -12,8 +12,17 @@ export default class Landing extends Component {
     render() {
         return (
             <div className='landingMain' >
-                <div className='landingQuotes' >‘By failing to prepare, you are preparing to fail.’ -Benjamin Franklin</div>
-                <a href={process.env.REACT_APP_LOGIN}><button className='loginButton' >Login</button></a>
+                <div className='landingLogo' >
+                    <div className='landingUAF' >UAF</div>
+                    <div className='landingBar' >|</div>
+                    <div className='landingFullUAF' >Universal Air Forum</div>
+                </div>
+                <div className='landingQuotes' >
+                    <div className='landingQuoteLine lq1' >"By failing to prepare, </div>
+                    <div className='landingQuoteLine lq2' >you are preparing to fail."</div>
+                    <div className='landingQuoteLine lqAuth' > -Benjamin Franklin</div>
+                </div>
+                    <a className='loginBtnPosition' href={process.env.REACT_APP_LOGIN}><button className='loginButton' >Login</button></a>
             </div>
         )
     }
