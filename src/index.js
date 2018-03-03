@@ -1,8 +1,7 @@
 import React from 'react';
 import ReactDOM from 'react-dom';
 import './index.css';
-import {Router} from 'react-router-dom'
-import history from './history'
+import {HashRouter} from 'react-router-dom'
 import App from './App';
 // import registerServiceWorker from './registerServiceWorker';
 import { SocketProvider } from 'socket.io-react';
@@ -12,8 +11,8 @@ const socket = io.connect(process.env.REACT_APP_SOCKET_CONNECTION);
 
 ReactDOM.render(
     <SocketProvider socket={ socket }>
-        <Router history={ history } >
+        <HashRouter >
             <App />
-        </Router>
+        </HashRouter>
     </SocketProvider>,    
  document.getElementById('root'));
