@@ -86,13 +86,12 @@ app.get('/logout', (req, res) => {
 )
 
 //  Frontend Endpoints start here
+app.get("/auth/active_user", userCtrl.authenticated )
+
 app.use(bodyParser.json())
 
 app.get("/api/userinfo", userCtrl.getUserInfo)
-app.put("/api/user", (req, res, next) => {
-    console.log(req.body)
-    next()
-}, userCtrl.updateUserInfo)
+app.put("/api/user", userCtrl.updateUserInfo)
 app.put("/api/user/type/:type", userCtrl.updateUserType)
 
 app.get("/api/posts", postsCtrl.readPosts)

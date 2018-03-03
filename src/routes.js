@@ -11,7 +11,7 @@ import FriendInfo from './wrapperCom/FriendInfo/FriendInfo'
 import Donate from './components/Donate/Donate'
 
 export default (
-    <Switch>
+    <Switch> 
         <Route exact path='/' component={Landing}/>
         <Route path='/profile' component={Profile}/>
         <Route path='/friend' component={FriendInfo}/>

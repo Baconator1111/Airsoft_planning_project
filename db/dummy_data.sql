@@ -52,6 +52,6 @@ insert into friends ( user_id_fnd, fnd_user_id, pending ) values ( 3, 4, true );
 insert into friends ( user_id_fnd, fnd_user_id, pending ) values ( 4, 3, true );
 insert into friends ( user_id_fnd, fnd_user_id, pending ) values ( 3, 5, true );
 insert into friends ( user_id_fnd, fnd_user_id, pending ) values ( 5, 3, true );
-insert into friends ( user_id_fnd, fnd_user_id, pending ) values ( 4, 5, true);
+insert into friends ( user_id_fnd, fnd_user_id, pending ) values ( 4, 5, true );
 insert into friends ( user_id_fnd, fnd_user_id, pending ) values ( 5, 4, true );
 insert into friends ( user_id_fnd, fnd_user_id ) values ( 2, 4 );
