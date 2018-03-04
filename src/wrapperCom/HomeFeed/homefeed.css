@@ -26,12 +26,16 @@
 }
 
 .homeFeedPosts {
+    margin-left: 20vw;
+    position: relative;
     display: flex;
     flex-direction: column;
 }
 
 .homeFeedEvents {
+    position: fixed;
     margin-top: 68px;
+    margin-left: 15px;
 }
 
 .homeFeedBody {
