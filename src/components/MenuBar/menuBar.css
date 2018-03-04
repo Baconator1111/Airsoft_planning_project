@@ -1,5 +1,5 @@
 .menuBar {
-    margin-top: 10px;
+    margin-top: 15px;
     margin-right: 18px;
     display: flex;
     justify-content: flex-end;
@@ -23,7 +23,11 @@
 
 .menuBtn:focus {
     outline: 0;
-  }
+}
+
+.menuBtn:hover {
+    background: #222222;
+}
 
 .menuBarFeed {
     border-top-left-radius: 3px;

@@ -106,18 +106,27 @@ class PostTile extends Component {
         if (!this.state.edit) {
             return (
                 <div key={post.post_id} className='postDisplay'>
-                    <div className='postUserImg'><img src={post.user_img} alt="" /></div>
-                    <div className='postBtn' >
-                        <button className='post_filter' onClick={() => this.handleClickFilter(post)}>Remove From View</button>
-                        <button className='post_save' onClick={() => this.handleClickSave(post)}>Save Post</button>
-                        {this.state.userId === post.user_id_posts ? <button className='post_edit_form' onClick={() => this.handleClickEdit()} >Edit</button> : null}
-                        {this.state.userId === post.user_id_posts ? <button className='post_save' onClick={() => this.handleClickDelete(post)}>Delete Post</button> : null}
+                    <div className='postTitleCont' >
+                        <div className='postTitle'>{post.post_title}</div>
+                        <div className='postMenu' >
+                            <button className='postMenuBtn post_filter' onClick={() => this.handleClickFilter(post)}>Remove From View</button>
+                            <button className='postMenuBtn post_save' onClick={() => this.handleClickSave(post)}>Save Post</button>
+                            {this.state.userId === post.user_id_posts ? <button className='postMenuBtn post_edit_form' onClick={() => this.handleClickEdit()} >Edit</button> : null}
+                            {this.state.userId === post.user_id_posts ? <button className='postMenuBtn post_save' onClick={() => this.handleClickDelete(post)}>Delete Post</button> : null}
+                        </div>
                     </div>
-                    <div className='postUserName'>{post.user_name}</div>
-                    <div className='postTitle'>{post.post_title}</div>
-                    {post.post_img ? <div className='postImg'><img src={post.post_img} alt="" /></div> : null}
-                    <div className='postBody'>{post.post_body}</div>
-                    <ExpandableBox boxTitle= {`${this.state.numCom}  Replies`} >{comments}</ExpandableBox>
+                    <div className='postContent' >
+                        <div className='postUserInfo' >
+                            <div className='postUserImg'><img src={post.user_img} alt="" /></div>
+                            <div className='postUserName'>{post.user_name}</div>
+                            <div className='postUserType'>{post.user_type}</div>
+                        </div>
+                        <div className='postInfo' >
+                            {post.post_img ? <div className='postImg'><img src={post.post_img} alt="" /></div> : null}
+                            <div className='postBody'>{post.post_body}</div>
+                            <div className='postCommentsBox' ><ExpandableBox boxTitle={`${this.state.numCom}  Replies`} >{comments}</ExpandableBox></div>
+                        </div>
+                    </div>
                 </div>
             )
         } else {

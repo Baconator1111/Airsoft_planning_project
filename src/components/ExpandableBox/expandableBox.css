@@ -5,3 +5,11 @@
     color: #E8E8E8;
     border-radius: 3px;
 }
+
+.createPostBtn:focus {
+    outline: 0;
+}
+
+.createPostBtn:hover {
+    background: #222222;
+}
