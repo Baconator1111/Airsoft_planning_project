@@ -2,3 +2,39 @@
     margin-bottom: 3rem;
     /* border: 2px red solid; */
 }
+
+.homeFeed {
+    color: #E8E8E8;
+    background: #222222;
+    font-family: 'Montserrat', sans-serif;
+}
+
+.homeFeedMain {
+    margin-top: 30px;
+}
+
+.createPostExpBox img {
+    max-height: 15rem;
+    max-width: 22rem;
+}
+
+.createPost {
+    float: left;
+    width: 100px;
+    margin-left: 45px;
+    margin-bottom: 50px;
+}
+
+.homeFeedPosts {
+    display: flex;
+    flex-direction: column;
+}
+
+.homeFeedEvents {
+    margin-top: 68px;
+}
+
+.homeFeedBody {
+    display: flex;
+    padding: 20px;
+}

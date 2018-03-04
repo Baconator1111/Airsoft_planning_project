@@ -12,7 +12,8 @@ export default class EventsListing extends Component {
     render() {
         return (
             <div>
-                <h1>Listing Events component</h1>
+                <div>Upcoming Local Events</div>
+                <div>Under Construction!</div>
             </div>
         )
     }

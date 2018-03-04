@@ -1,5 +1,5 @@
 import React, { Component } from 'react'
-// import './ExpandableBox.css'
+import './expandableBox.css'
 
 export default class ExpandableBox extends Component {
     constructor(props) {
@@ -33,7 +33,7 @@ export default class ExpandableBox extends Component {
         // console.log( this.props )
         return (
             <div>
-                <button>
+                <button className={ this.props.style } >
                     <div className={this.state.opened ? 'expanded' : 'notExpanded'} onClick={() => this.handleClickedBox()}>
                         {this.props.boxTitle}
                     </div>

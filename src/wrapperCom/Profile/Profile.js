@@ -43,7 +43,7 @@ export default class UserInfo extends Component {
                         rank = 'Admin'
                         break
                 }
-                let displayName = `${userInfo.first_name}.${userInfo.last_name}`
+                let displayName = `${userInfo.first_name?userInfo.first_name:'firstName'}.${userInfo.last_name?userInfo.last_name:'lastName'}`
                 this.setState({
                     userimg: userInfo.user_img || "Enter Your Image Here",
                     firstName: userInfo.first_name || "Enter Your First Name Here",
@@ -145,13 +145,13 @@ export default class UserInfo extends Component {
                         </label>
                     </div>
                     <div className='profileMid' >
-                        <div>First Name:  <input className='profile_input firstNameProfile' onChange={(e) => this.handleChange(e.target.value, 'firstName')} value={this.state.firstName} /></div>
-                        <div>Last Name:  <input className='profile_input lastNameProfile' onChange={(e) => this.handleChange(e.target.value, 'lastName')} value={this.state.lastName} /></div>
-                        <div>Display Name:   <input className='profile_input locationProfile' value={this.state.displayName} /></div>
-                        <div>Rank: {this.state.rank} <input className='profile_input rankProfile' type="text" /> </div>
-                        <div>Team:  {this.state.team} <input className='profile_input TeamProfile' type="text" /></div>
-                        <div>Location:   <input className='profile_input locationProfile' onChange={(e) => this.handleChange(e.target.value, 'location')} value={this.state.location} /></div>
-                        <div>Email:   <input className='profile_input emailProfile' onChange={(e) => this.handleChange(e.target.value, 'email')} value={this.state.email} /></div>
+                        <div className='profileInfoDisplay' >First Name:  <input className='profile_input firstNameProfile' onChange={(e) => this.handleChange(e.target.value, 'firstName')} value={this.state.firstName} /></div>
+                        <div className='profileInfoDisplay' >Last Name:  <input className='profile_input lastNameProfile' onChange={(e) => this.handleChange(e.target.value, 'lastName')} value={this.state.lastName} /></div>
+                        <div className='profileInfoDisplay' >Display Name:   <input className='profile_input locationProfile' value={this.state.displayName} /></div>
+                        <div className='profileInfoDisplay' >Rank: {this.state.rank} <input className='profile_input rankProfile' type="text" /> </div>
+                        <div className='profileInfoDisplay' >Team:  {this.state.team} <input className='profile_input TeamProfile' type="text" /></div>
+                        <div className='profileInfoDisplay' >Location:   <input className='profile_input locationProfile' onChange={(e) => this.handleChange(e.target.value, 'location')} value={this.state.location} /></div>
+                        <div className='profileInfoDisplay' >Email:   <input className='profile_input emailProfile' onChange={(e) => this.handleChange(e.target.value, 'email')} value={this.state.email} /></div>
                         <div className='profileMidBtns' >
                             <button className='profileBtn profileCancel' onClick={() => this.handleCancel()}>Cancel</button>
                             <button className='profileBtn profileSave' onClick={() => this.handleSaveChanges()}>Save Changes</button>

@@ -10,6 +10,7 @@ import NavBar from '../../components/NavBar/NavBar'
 import ExpandableBox from '../../components/ExpandableBox/ExpandableBox'
 import PostTile from '../../components/PostTile/PostTile'
 import DonateBtn from '../../components/DonateBtn/DonateBtn'
+import EventsListing from '../../components/EventsListing/EventsListing'
 
 
 
@@ -121,33 +122,41 @@ class HomeFeed extends Component {
 
     render() {
         // console.log( this.state.currentPosts )
-        const post = <div className='creatPostExpBox' >
-            <input onChange={e => this.handleChange(e.target.value, 'post_title')} className='inputPostTitle' type="text" placeholder='Post Title Here' />
+        const post = <div className='createPostExpBox' >
+            <div>Post Title: <input onChange={e => this.handleChange(e.target.value, 'post_title')} className='inputPostTitle' type="text" placeholder='Post Title Here' /></div>
             <img src={this.state.image} alt="" /><input onChange={e => this.uploadFile(e.target.files)} type="file" />
-            <input onChange={e => this.handleChange(e.target.value, 'post_body')} className='inputPostBody' type="text" placeholder='Post Body Here' />
+            <div>Post Body: <textarea onChange={e => this.handleChange(e.target.value, 'post_body')} className='inputPostBody' type="text" placeholder='Post Body Here' /></div>
             <button onClick={() => this.handleSubmitPost()} >Submit</button>
         </div>
         if (this.state.currentPosts[0]) {
             return (
-                <div>
+                <div className='homeFeed' >
                     <NavBar page='General Feed' />
-                    <ExpandableBox close={this.state.close} boxTitle='CreatePost'>{post}</ExpandableBox>
-                    <div className='tiles'>
-                        {this.state.currentPosts.map((post) => {
-                            return (
-                                <div key={post.post_id} className='postTile'>
-                                    <PostTile post={post} />
-                                </div>
-                            )
+                    <div className='homeFeedMain' >
+                        <div className='homeFeedBody' >
+                            <div className='homeFeedEvents' ><EventsListing/></div>
+                            <div className='homeFeedPosts' >
+                                <div className='createPost' ><ExpandableBox style='createPostBtn' close={this.state.close} boxTitle='CreatePost'>{post}</ExpandableBox></div>
+                                <div className='tiles'>
+                                    {this.state.currentPosts.map((post) => {
+                                        return (
+                                            <div key={post.post_id} className='postTile'>
+                                                <PostTile post={post} />
+                                            </div>
+                                        )
 
-                        })}
+                                    })}
+                                </div>
+                            </div>
+                        </div>
+                        <DonateBtn />
                     </div>
-                    <DonateBtn />
                 </div>
+
             )
         } else {
             return (
-                <div>
+                <div className='homeFeed' >
                     <NavBar page='General Feed' />
                     <ExpandableBox close={this.state.close} boxTitle='CreatePost'>{post}</ExpandableBox>
                     <h1>No new posts</h1>

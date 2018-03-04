@@ -53,7 +53,7 @@
 
 .profileMidBtns {
   display: flex;
-  padding-left: 150px;
+  padding-left: 100px;
 }
 
 .profileBtn {
@@ -92,7 +92,13 @@
   font-size: 18px;
   width: 300px;
   height: 30px;
+  opacity: 1;
 }
+
+/* .profileInfoDisplay {
+  background: linear-gradient( #E8E8E8, #747474);
+  opacity: .2;
+} */
 
 .profile_input:focus {
   color: #E8E8E8;

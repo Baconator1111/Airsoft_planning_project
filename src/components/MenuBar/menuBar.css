@@ -1,5 +1,6 @@
 .menuBar {
     margin-top: 10px;
+    margin-right: 18px;
     display: flex;
     justify-content: flex-end;
     font-family: 'Montserrat', sans-serif;
@@ -19,6 +20,10 @@
     border: solid 1px #E8E8E8;
     color: #E8E8E8;
 }
+
+.menuBtn:focus {
+    outline: 0;
+  }
 
 .menuBarFeed {
     border-top-left-radius: 3px;

@@ -99,7 +99,7 @@ class PostTile extends Component {
 
                 })}
                 <input className='inputCommentTitle' type="text" placeholder='Comment Title Here' onChange={e => this.handleComTitle(e.target.value)} />
-                <input className='inputCommentBody' type="text" placeholder='Comment Body Here' onChange={e => this.handleComBody(e.target.value)} />
+                <textarea className='inputCommentBody' type="text" placeholder='Comment Body Here' onChange={e => this.handleComBody(e.target.value)} />
                 <button onClick={() => this.handleSubmitComment()} >Submit</button>
             </div>)
         const post = this.props.post

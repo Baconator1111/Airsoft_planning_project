@@ -70,7 +70,7 @@ export default class NavBar extends Component {
                         <button className='navBtn' onClick={() => this.handleMenuOpen()} ><FontAwesomeIcon icon={faBars} /></button>
                     </div>
                 </div>
-                <MenuBar />
+                <MenuBar className='navMenuBar' />
             </div>
         )
     }

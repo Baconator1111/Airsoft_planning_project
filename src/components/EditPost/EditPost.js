@@ -5,6 +5,8 @@ import sha1 from 'sha1'
 import superagent from 'superagent'
 import openSocket from 'socket.io-client';
 
+import './editPost.css'
+
 class EditPost extends Component {
     constructor(props) {
         super(props)
@@ -92,9 +94,10 @@ class EditPost extends Component {
 
     render() {
         return (
-            <div>
-                <img src={this.state.post_img} alt="" /><input onChange={e => this.uploadFile(e.target.files)} type="file" />
+            <div className='editPostMain' >
+                <div>Editing Post</div>
                 <div >Post Title:  <input className='post_edit_input' onChange={(e) => this.handleInput(e.target.value, 'post_title')} value={this.state.post_title} /></div>
+                <img src={this.state.post_img} alt="" /><input onChange={e => this.uploadFile(e.target.files)} type="file" />
                 <div >Post Body:  <textarea className='post_edit_input' onChange={(e) => this.handleInput(e.target.value, 'post_body')} value={this.state.post_body} /></div>
                 <button onClick={() => this.handleUpdate()} >Save Changes</button>
                 <button onClick={() => this.props.handleClickEditClose()} >Cancel</button>
