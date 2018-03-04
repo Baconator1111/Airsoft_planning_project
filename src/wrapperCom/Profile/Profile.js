@@ -13,6 +13,9 @@ export default class UserInfo extends Component {
             userimg: '',
             firstName: '',
             lastName: '',
+            displayName: '',
+            rank: '',
+            team: '',
             email: '',
             location: '',
             timestamp: 'None yet'
@@ -23,13 +26,31 @@ export default class UserInfo extends Component {
 
         axios.get("/api/userinfo")
             .then(user => {
-                let userInfo
-                userInfo = user.data
+                let userInfo = user.data
+                let rank
                 // console.log( userInfo )
+                switch (userInfo.user_type) {
+                    case 'reg':
+                        rank = 'Soldier'
+                        break
+                    case 'teamL':
+                        rank = 'Team Leader'
+                        break
+                    case 'squadL':
+                        rank = 'Squad Leader'
+                        break
+                    case 'admin':
+                        rank = 'Admin'
+                        break
+                }
+                let displayName = `${userInfo.first_name}.${userInfo.last_name}`
                 this.setState({
                     userimg: userInfo.user_img || "Enter Your Image Here",
                     firstName: userInfo.first_name || "Enter Your First Name Here",
                     lastName: userInfo.last_name || "Enter Your Last Name Here",
+                    displayName: displayName || "Coming Soon",
+                    rank: rank || "Soldier",
+                    team: userInfo.user_team || "Go Join a Team",
                     email: userInfo.user_email || "Enter Your Email Here",
                     location: userInfo.user_location || "Enter Your Location Here"
                 })
@@ -89,22 +110,54 @@ export default class UserInfo extends Component {
             last_name: this.state.lastName,
             user_location: this.state.location,
             user_email: this.state.email,
-
         }
         // console.log( body )
         axios.put('/api/user', body).catch(error => console.log(error))
+    }
+
+    handleCancel() {
+        axios.get("/api/userinfo")
+            .then(user => {
+                let userInfo
+                userInfo = user.data
+                // console.log( userInfo )
+                this.setState({
+                    userimg: userInfo.user_img || "Enter Your Image Here",
+                    firstName: userInfo.first_name || "Enter Your First Name Here",
+                    lastName: userInfo.last_name || "Enter Your Last Name Here",
+                    email: userInfo.user_email || "Enter Your Email Here",
+                    location: userInfo.user_location || "Enter Your Location Here"
+                })
+            })
     }
 
     render() {
         return (
             <div className='profileMain'>
                 <NavBar page='Profile' />
-                <img className='profileImg' src={this.state.userimg} alt="" /><input onChange={e => this.uploadFile(e.target.files)} type="file" />
-                <div >First Name:  <input className='profile_input' onChange={(e) => this.handleChange(e.target.value, 'firstName')} value={this.state.firstName} /></div>
-                <div >Last Name:  <input className='profile_input' onChange={(e) => this.handleChange(e.target.value, 'lastName')} value={this.state.lastName} /></div>
-                <div >Email:   <input className='profile_input' onChange={(e) => this.handleChange(e.target.value, 'email')} value={this.state.email} /></div>
-                <div >Location:   <input className='profile_input' onChange={(e) => this.handleChange(e.target.value, 'location')} value={this.state.location} /></div>
-                <button onClick={() => this.handleSaveChanges()}>Save Changes</button>
+                <div className='profileInfo' >
+                    <div className='profileLeft' >
+                        <div className='profileTitle' >Profile</div>
+                        <img className='profileImg' src={this.state.userimg} alt="" />
+                        <label className='profileInputBtn' >
+                            <input className='profileImgInput' onChange={e => this.uploadFile(e.target.files)} type="file" />
+                            <div>Choose File</div>
+                        </label>
+                    </div>
+                    <div className='profileMid' >
+                        <div>First Name:  <input className='profile_input firstNameProfile' onChange={(e) => this.handleChange(e.target.value, 'firstName')} value={this.state.firstName} /></div>
+                        <div>Last Name:  <input className='profile_input lastNameProfile' onChange={(e) => this.handleChange(e.target.value, 'lastName')} value={this.state.lastName} /></div>
+                        <div>Display Name:   <input className='profile_input locationProfile' value={this.state.displayName} /></div>
+                        <div>Rank: {this.state.rank} <input className='profile_input rankProfile' type="text" /> </div>
+                        <div>Team:  {this.state.team} <input className='profile_input TeamProfile' type="text" /></div>
+                        <div>Location:   <input className='profile_input locationProfile' onChange={(e) => this.handleChange(e.target.value, 'location')} value={this.state.location} /></div>
+                        <div>Email:   <input className='profile_input emailProfile' onChange={(e) => this.handleChange(e.target.value, 'email')} value={this.state.email} /></div>
+                        <div className='profileMidBtns' >
+                            <button className='profileBtn profileCancel' onClick={() => this.handleCancel()}>Cancel</button>
+                            <button className='profileBtn profileSave' onClick={() => this.handleSaveChanges()}>Save Changes</button>
+                        </div>
+                    </div>
+                </div>
             </div>
         )
     }

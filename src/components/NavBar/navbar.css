@@ -6,16 +6,14 @@
     flex-wrap: nowrap;
     justify-content: space-between;
     align-items: center;
-    padding: 4px;
+    padding: 8px;
 }
 
 .navBtn {
     display: none;
 }
 
-.logoutPosition {
-    justify-content: flex-end;
-}
+
 
 .logoutBtn {
     background: none;
@@ -27,19 +25,21 @@
     font-size: 1.7rem;
     text-decoration: none;
     color: #E8E8E8;
-    /* border: 2px solid red; */
+    margin-left: 25px;
+    padding-top: 2px;
 }
 
 .userImgNavCont {
-    height: 3rem;
-    width: 3rem;
-    min-width: 3rem !important;
+    height: 2rem;
+    width: 2rem;
+    min-width: 2rem !important;
     border-radius: 50%;
     overflow: hidden;
+    margin-left: 15px;
 }
 
 .userImgNav {
-    max-height: 3rem !important;
+    max-height: 2rem !important;
 }
 
 .navLinks {
@@ -58,8 +58,26 @@
     background-color: greenyellow;
 }
 
+.navRight {
+    display: flex;
+    align-items: center; 
+    margin-right: 30px;   
+}
+
 @media ( max-width: 420px) {
     .navBtn {
         display: flex;
+    }
+
+    .navRight {
+        margin-right: 0px;
+    }
+
+    .navLogo {
+        margin-left: 0px;
+    }
+
+    .userImgNavCont {
+        margin-left: 0px;
     }
 }
