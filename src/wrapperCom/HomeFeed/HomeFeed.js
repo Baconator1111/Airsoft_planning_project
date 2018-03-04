@@ -20,7 +20,7 @@ class HomeFeed extends Component {
             currentPosts: [],
             post_title: '',
             post_body: '',
-            images: '',
+            image: '',
             userId: null,
             close: false
         }
@@ -58,7 +58,7 @@ class HomeFeed extends Component {
                 post_id_com: this.props.post_id,
                 post_title: this.state.post_title,
                 post_body: this.state.post_body,
-                post_img: this.state.images
+                post_img: this.state.image
             }
             axios.post('/api/posts', body)
                 .then(() => {
@@ -103,7 +103,7 @@ class HomeFeed extends Component {
 
             // console.log('UPLOAD COMLETE: ' + JSON.stringify(res.body));
             // console.log(res.body.secure_url)
-            this.setState({ images: res.body.secure_url })
+            this.setState({ image: res.body.secure_url })
 
         });
 
@@ -123,7 +123,7 @@ class HomeFeed extends Component {
         // console.log( this.state.currentPosts )
         const post = <div className='creatPostExpBox' >
             <input onChange={e => this.handleChange(e.target.value, 'post_title')} className='inputPostTitle' type="text" placeholder='Post Title Here' />
-            <Dropzone onDrop={this.uploadFile.bind(this)} />
+            <img src={this.state.image} alt="" /><input onChange={e => this.uploadFile(e.target.files)} type="file" />
             <input onChange={e => this.handleChange(e.target.value, 'post_body')} className='inputPostBody' type="text" placeholder='Post Body Here' />
             <button onClick={() => this.handleSubmitPost()} >Submit</button>
         </div>

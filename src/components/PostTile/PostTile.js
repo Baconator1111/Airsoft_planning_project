@@ -12,6 +12,7 @@ class PostTile extends Component {
     constructor(props) {
         super(props)
         this.state = {
+            numCom: null,
             comments: [],
             com_title: '',
             com_body: '',
@@ -33,7 +34,8 @@ class PostTile extends Component {
         const post_id_com = this.props.post.post_id
         socket.on(`send comments ${post_id_com}`, data => {
             // console.log(data)
-            this.setState({ comments: data })
+            let numCom = data.length
+            this.setState({ comments: data, numCom: numCom })
         })
         socket.emit('get comments', { post_id_com })
     }
@@ -115,7 +117,7 @@ class PostTile extends Component {
                     <div className='postTitle'>{post.post_title}</div>
                     {post.post_img ? <div className='postImg'><img src={post.post_img} alt="" /></div> : null}
                     <div className='postBody'>{post.post_body}</div>
-                    <ExpandableBox boxTitle='Comments'>{comments}</ExpandableBox>
+                    <ExpandableBox boxTitle= {`${this.state.numCom}  Replies`} >{comments}</ExpandableBox>
                 </div>
             )
         } else {

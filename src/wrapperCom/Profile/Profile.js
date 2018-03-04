@@ -99,7 +99,7 @@ export default class UserInfo extends Component {
         return (
             <div className='profileMain'>
                 <NavBar page='Profile' />
-                <img src={this.state.userimg} alt="" /><input onChange={e => this.uploadFile(e.target.files)} type="file" />
+                <img className='profileImg' src={this.state.userimg} alt="" /><input onChange={e => this.uploadFile(e.target.files)} type="file" />
                 <div >First Name:  <input className='profile_input' onChange={(e) => this.handleChange(e.target.value, 'firstName')} value={this.state.firstName} /></div>
                 <div >Last Name:  <input className='profile_input' onChange={(e) => this.handleChange(e.target.value, 'lastName')} value={this.state.lastName} /></div>
                 <div >Email:   <input className='profile_input' onChange={(e) => this.handleChange(e.target.value, 'email')} value={this.state.email} /></div>

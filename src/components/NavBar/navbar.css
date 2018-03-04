@@ -1,25 +1,45 @@
-
 .navMain {
-    background: rgb(18, 96, 18);
+    background: #3D3D3D;
     /* border: 2px solid red;     */
-	display: flex;
-	flex-direction: row;
-	flex-wrap: nowrap;
-	justify-content: space-between;
-	align-items: baseline;
-	align-content: stretch;
+    display: flex;
+    flex-direction: row;
+    flex-wrap: nowrap;
+    justify-content: space-between;
+    align-items: center;
+    padding: 4px;
 }
 
-.navTitle{
-    width: 30%;
+.navBtn {
+    display: none;
+}
+
+.logoutPosition {
+    justify-content: flex-end;
+}
+
+.logoutBtn {
+    background: none;
+    border: none;
+    color: #E8E8E8;
+}
+
+.navLogo {
+    font-size: 1.7rem;
+    text-decoration: none;
+    color: #E8E8E8;
     /* border: 2px solid red; */
 }
 
-.navLogo img {
+.userImgNavCont {
+    height: 3rem;
+    width: 3rem;
+    min-width: 3rem !important;
+    border-radius: 50%;
+    overflow: hidden;
+}
 
-    height: 5rem;
-    width: 4rem;
-    /* border: 2px solid red; */
+.userImgNav {
+    max-height: 3rem !important;
 }
 
 .navLinks {
@@ -38,4 +58,8 @@
     background-color: greenyellow;
 }
 
-
+@media ( max-width: 420px) {
+    .navBtn {
+        display: flex;
+    }
+}

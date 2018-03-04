@@ -51,6 +51,13 @@
         justify-self: end;
         font-size: 10px;
     }
+
+    .landingQuotes {
+        margin-top: 90px;
+        align-self: center;
+        display: grid;
+        width: 100vw !important;
+    }
 }
 
 .landingLogo {
