@@ -134,7 +134,7 @@ class HomeFeed extends Component {
                     <NavBar page='General Feed' />
                     <div className='homeFeedMain' >
                         <div className='homeFeedBody' >
-                            <div className='homeFeedEvents' ><EventsListing/></div>
+                            <div className='homeFeedEvents' ><EventsListing /></div>
                             <div className='homeFeedPosts' >
                                 <div className='createPost' ><ExpandableBox style='createPostBtn' close={this.state.close} boxTitle='CreatePost'>{post}</ExpandableBox></div>
                                 <div className='tiles'>
@@ -158,9 +158,16 @@ class HomeFeed extends Component {
             return (
                 <div className='homeFeed' >
                     <NavBar page='General Feed' />
-                    <ExpandableBox close={this.state.close} boxTitle='CreatePost'>{post}</ExpandableBox>
-                    <h1>No new posts</h1>
-                    <DonateBtn />
+                    <div className='homeFeedMain' >
+                        <div className='homeFeedBody' >
+                            <div className='homeFeedEvents' ><EventsListing /></div>
+                            <div className='homeFeedPosts' >
+                                <div className='createPost' ><ExpandableBox style='createPostBtn' close={this.state.close} boxTitle='CreatePost'>{post}</ExpandableBox></div>
+                                <h1>No new posts</h1>
+                            </div>
+                        </div>
+                        <DonateBtn />
+                    </div>
                 </div>
             )
         }
