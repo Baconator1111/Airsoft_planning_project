@@ -8,7 +8,7 @@
 }
 
 .profileInfo {
-  margin-top: 125px;
+  margin-top: 30px;
   display: grid;
   grid-template-columns: 1fr 1fr; 
 }
@@ -37,6 +37,10 @@
   margin-left: 175px;
 }
 
+.profileInputBtn:hover {
+  cursor: pointer;
+  background: rgba(232, 232, 232, 0.696);
+}
 .profileMid {
   padding-top: 35px;
   display: flex;
@@ -53,7 +57,18 @@
 }
 
 .profileBtn {
-  padding: 3px;
+  padding: 4px;
+  background: #E8E8E8;
+  border-radius: 3px;
+}
+
+.profileBtn:hover {
+  cursor: pointer;
+  background: rgba(232, 232, 232, 0.696);
+}
+
+.profileBtn:focus {
+  outline: 0;
 }
 
 .profileSave {
@@ -87,22 +102,6 @@
   width: 300px;
   height: 30px;
 }
-
-/* .firstNameProfile {
-  align-items: flex-start;
-}
-
-.lastNameProfile {
-  align-items: flex-start;
-}
-
-.emailProfile {
-  align-items: flex-start;
-}
-
-.locationProfile {
-  align-items: flex-start;
-} */
 
 .profileImg {
   max-height: 20rem;

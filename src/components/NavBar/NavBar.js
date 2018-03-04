@@ -4,7 +4,8 @@ import axios from 'axios'
 import FontAwesomeIcon from '@fortawesome/react-fontawesome'
 import { faBars } from '@fortawesome/fontawesome-free-solid'
 import './navbar.css'
-import Logo from './logo-01.png'
+
+import MenuBar from '../MenuBar/MenuBar'
 
 export default class NavBar extends Component {
     constructor(props) {
@@ -60,13 +61,16 @@ export default class NavBar extends Component {
             )
         }
         return (
-            <div className='navMain' >
-                <Link to='/general_feed' className='navLogo' >UAF</Link>
-                <div className='navRight' >
-                    <a className='logoutPosition' href={process.env.REACT_APP_LOGOUT}><button className='logoutBtn' >Logout</button></a>
-                    {this.state.userImg ? <div className='userImgNavCont' ><img className='userImgNav' src={this.state.userImg} alt="" /></div> : <div className='userImgNavCont'><img className='userImgNav' src='' /></div>}
-                    <button className='navBtn' onClick={() => this.handleMenuOpen()} ><FontAwesomeIcon icon={faBars} /></button>
+            <div>
+                <div className='navMain' >
+                    <Link to='/general_feed' className='navLogo' >UAF</Link>
+                    <div className='navRight' >
+                        <a className='logoutPosition' href={process.env.REACT_APP_LOGOUT}><button className='logoutBtn' >Logout</button></a>
+                        {this.state.userImg ? <div className='userImgNavCont' ><img className='userImgNav' src={this.state.userImg} alt="" /></div> : <div className='userImgNavCont'><img className='userImgNav' src='' /></div>}
+                        <button className='navBtn' onClick={() => this.handleMenuOpen()} ><FontAwesomeIcon icon={faBars} /></button>
+                    </div>
                 </div>
+                <MenuBar />
             </div>
         )
     }

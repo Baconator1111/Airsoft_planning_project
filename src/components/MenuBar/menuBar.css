@@ -1,0 +1,31 @@
+.menuBar {
+    margin-top: 10px;
+    display: flex;
+    justify-content: flex-end;
+    font-family: 'Montserrat', sans-serif;
+}
+
+.menuBarLinks {
+    display: flex;
+    flex-direction: row;
+    flex-wrap: nowrap;
+    align-items: center;
+    padding: 5px;
+}
+
+.menuBtn {
+    background: #3D3D3D;
+    padding: 8px;
+    border: solid 1px #E8E8E8;
+    color: #E8E8E8;
+}
+
+.menuBarFeed {
+    border-top-left-radius: 3px;
+    border-bottom-left-radius: 3px;
+}
+
+.menuBarSaved {
+    border-top-right-radius: 3px;
+    border-bottom-right-radius: 3px;
+}
