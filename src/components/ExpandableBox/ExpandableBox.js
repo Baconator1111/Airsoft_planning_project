@@ -33,8 +33,8 @@ export default class ExpandableBox extends Component {
         // console.log( this.props )
         return (
             <div>
-                <button className={ this.props.style } >
-                    <div className={this.state.opened ? 'expanded' : 'notExpanded'} onClick={() => this.handleClickedBox()}>
+                <button className={ this.props.style } onClick={() => this.handleClickedBox()}>
+                    <div className={this.state.opened ? 'expanded' : 'notExpanded'} >
                         {this.props.boxTitle}
                     </div>
                 </button>

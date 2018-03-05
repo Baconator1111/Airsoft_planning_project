@@ -13,6 +13,11 @@
     border-radius: 5px;
 }
 
+.postTitle {
+    width: 275px;
+    text-align: start;
+}
+
 .postMenu {
     display: flex;
     flex-direction: row;
@@ -27,20 +32,51 @@
     color: #E8E8E8;
 }
 
+.postMenuBtn:hover {
+    color: rgba(232, 232, 232, 0.565);
+}
+
 .postMenuBtn:focus {
     outline: 0;
 }
 
-.postTitle {
-    width: 275px;
-    text-align: start;
+.postContent {
+    padding-top: 15px;
+    display: flex;
+    justify-content: space-around;
+    align-items: flex-start;
+}
+
+.postUserInfo {
+    padding-right: 30px;
+    display: flex;
+    flex-direction: column;
+    align-items: flex-start;
+}
+
+.postUserImg {
+    padding-right: 30px;
 }
 
 .postUserImg img {
     max-height: 5rem;
     max-width: 5rem;
-    float: left;
-    margin-left: 5vw;
+}
+
+.postUserName {
+    text-align: start;
+}
+
+.postInfo {
+    display: flex;
+    flex-direction: column;
+    align-items: flex-start;
+}
+
+.postBody {
+    margin-top: 20px;
+    text-align: start;
+    width: 460px;
 }
 
 .postBtn {
@@ -57,6 +93,46 @@
     max-width: 22rem;
 }
 
+.postCommentsBox {
+    margin-top: 20px;
+}
+
 .commentTile {
     margin: 2rem;
+}
+
+.createComment {
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    margin-left: 50px;
+    width: 270px; 
+}
+
+.inputCommentTitle {
+    max-width: 100px;
+}
+
+.inputCommentBody {
+    margin-top: 10px;
+    max-width: 250px;
+}
+
+.commentSubmit {
+    background: #3D3D3D;
+    padding: 8px;
+    border: solid 1px #E8E8E8;
+    color: #E8E8E8;
+    border-radius: 3px;
+    width: 70px;
+    margin-left: 100px;
+    margin-top: 10px;
+}
+
+.commentSubmit:focus {
+    outline: 0;
+}
+
+.commentSubmit:hover {
+    background: #222222;
 }

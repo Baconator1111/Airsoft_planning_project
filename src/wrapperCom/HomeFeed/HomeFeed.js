@@ -124,9 +124,9 @@ class HomeFeed extends Component {
         // console.log( this.state.currentPosts )
         const post = <div className='createPostExpBox' >
             <div>Post Title: <input onChange={e => this.handleChange(e.target.value, 'post_title')} className='inputPostTitle' type="text" placeholder='Post Title Here' /></div>
-            <img src={this.state.image} alt="" /><input onChange={e => this.uploadFile(e.target.files)} type="file" />
-            <div>Post Body: <textarea onChange={e => this.handleChange(e.target.value, 'post_body')} className='inputPostBody' type="text" placeholder='Post Body Here' /></div>
-            <button onClick={() => this.handleSubmitPost()} >Submit</button>
+            <img className='inputImg' src={this.state.image} alt="" /><input onChange={e => this.uploadFile(e.target.files)} type="file" />
+            <div className='inputPostBodyCont' >Post Body: <textarea onChange={e => this.handleChange(e.target.value, 'post_body')} className='inputPostBody' type="text" placeholder='Post Body Here' /></div>
+            <button className='createPostSubmit' onClick={() => this.handleSubmitPost()} >Submit</button>
         </div>
         if (this.state.currentPosts[0]) {
             return (
@@ -156,7 +156,7 @@ class HomeFeed extends Component {
             )
         } else {
             return (
-                <div className='homeFeed' >
+                <div className='homeFeedNone' >
                     <NavBar page='General Feed' />
                     <div className='homeFeedMain' >
                         <div className='homeFeedBody' >

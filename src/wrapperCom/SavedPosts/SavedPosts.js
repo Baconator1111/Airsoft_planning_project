@@ -4,6 +4,8 @@ import axios from 'axios'
 import NavBar from '../../components/NavBar/NavBar'
 import PostTile from '../../components/PostTile/PostTile'
 
+import './savedPosts.css'
+
 export default class SavedPosts extends Component {
     constructor(props) {
         super(props)
@@ -20,7 +22,7 @@ export default class SavedPosts extends Component {
     render() {
         if (this.state.savedPosts[0]) {
             return (
-                <div>
+                <div className='savedPostsMain' >
                     <NavBar page='Saved Posts' />
                     <div className='tiles'>
                         {this.state.savedPosts.map((post) => {
@@ -32,13 +34,14 @@ export default class SavedPosts extends Component {
 
                         })}
                     </div>
+                    <div></div>
                 </div>
             )
         } else {
             return (
-                <div>
+                <div className='savedPostsNone' >
                     <NavBar page='Saved Posts' />
-                    <h1> Loading </h1>
+                    <h1> You have no Saved Posts </h1>
                 </div>
             )
         }

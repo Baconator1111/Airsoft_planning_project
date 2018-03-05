@@ -73,6 +73,7 @@ class PostTile extends Component {
         }
         axios.post('/api/comments', body)
             .then(resp => {
+                this.setState({ com_title: '', com_body: '' })
                 const post_id_com = this.props.post.post_id
                 socket.emit('get comments', { post_id_com })
             })
@@ -98,9 +99,11 @@ class PostTile extends Component {
                     )
 
                 })}
-                <input className='inputCommentTitle' type="text" placeholder='Comment Title Here' onChange={e => this.handleComTitle(e.target.value)} />
-                <textarea className='inputCommentBody' type="text" placeholder='Comment Body Here' onChange={e => this.handleComBody(e.target.value)} />
-                <button onClick={() => this.handleSubmitComment()} >Submit</button>
+                <div className='createComment' >
+                    <input className='inputCommentTitle' type="text" placeholder='Reply Title' onChange={e => this.handleComTitle(e.target.value)} />
+                    <textarea className='inputCommentBody' type="text" placeholder='Your Reply' onChange={e => this.handleComBody(e.target.value)} />
+                    <button className='commentSubmit' onClick={() => this.handleSubmitComment()} >Submit</button>
+                </div>
             </div>)
         const post = this.props.post
         if (!this.state.edit) {
@@ -124,7 +127,7 @@ class PostTile extends Component {
                         <div className='postInfo' >
                             {post.post_img ? <div className='postImg'><img src={post.post_img} alt="" /></div> : null}
                             <div className='postBody'>{post.post_body}</div>
-                            <div className='postCommentsBox' ><ExpandableBox boxTitle={`${this.state.numCom}  Replies`} >{comments}</ExpandableBox></div>
+                            <div className='postCommentsBox' ><ExpandableBox style='commentsBtn' boxTitle={`${this.state.numCom}  Replies`} >{comments}</ExpandableBox></div>
                         </div>
                     </div>
                 </div>

@@ -12,7 +12,7 @@ export default class EventsListing extends Component {
     render() {
         return (
             <div>
-                <div>Upcoming Local Events</div>
+                <div>Local Events</div>
                 <div>Under Construction!</div>
             </div>
         )
