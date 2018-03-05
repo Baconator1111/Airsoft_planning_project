@@ -174,7 +174,7 @@ io.on('connection', function (socket) {
             }
         }
         console.log(`Connection disconnected: ${connections.length} active connections.`)
-        io.sockets.emit('update users', { users: users });
+        ßsocket.emit('update users', { users: users });
         if (!connections.length) {
             messages = [];
         }
@@ -184,7 +184,7 @@ io.on('connection', function (socket) {
         const db = app.get('db')
         db.get_posts(data.user_id)
             .then(posts => {
-                io.sockets.emit('get posts', posts)
+                socket.emit('get posts', posts)
             }).catch(err => console.log(err))
     })
 
