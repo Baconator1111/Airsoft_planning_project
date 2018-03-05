@@ -10,4 +10,6 @@
     color: #E8E8E8;
     background: #222222;
     font-family: 'Montserrat', sans-serif;
+    min-height: 100vh;
+    height: 100%;
 }
