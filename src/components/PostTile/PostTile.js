@@ -35,9 +35,20 @@ class PostTile extends Component {
         socket.on(`send comments ${post_id_com}`, data => {
             // console.log(data)
             let numCom = data.length
+            console.log(data, numCom)
             this.setState({ comments: data, numCom: numCom })
         })
         socket.emit('get comments', { post_id_com })
+    }
+
+    componentWillReceiveProps(){
+        const { socket } = this.props
+        const post_id_com = this.props.post.post_id
+        socket.on(`send comments ${post_id_com}`, data => {
+            console.log(data)
+            let numCom = data.length
+            this.setState({ comments: data, numCom: numCom })
+        })
     }
 
     handleClickDelete(post) {
@@ -99,12 +110,21 @@ class PostTile extends Component {
                     )
 
                 })}
+                
                 <div className='createComment' >
-                    <input className='inputCommentTitle' type="text" placeholder='Reply Title' onChange={e => this.handleComTitle(e.target.value)} />
-                    <textarea className='inputCommentBody' type="text" placeholder='Your Reply' onChange={e => this.handleComBody(e.target.value)} />
+                    <input className='inputCommentTitle' type="text" placeholder='Reply Title' value={this.state.com_title} onChange={e => this.handleComTitle(e.target.value)} />
+                    <textarea className='inputCommentBody' type="text" placeholder='Your Reply' value={this.state.com_body} onChange={e => this.handleComBody(e.target.value)} />
                     <button className='commentSubmit' onClick={() => this.handleSubmitComment()} >Submit</button>
                 </div>
             </div>)
+
+const { socket } = this.props
+const post_id_com = this.props.post.post_id
+socket.on(`send comments ${post_id_com}`, data => {
+    console.log(data)
+    let numCom = data.length
+    this.setState({ comments: data, numCom: numCom })
+})
         const post = this.props.post
         let user_name = post.user_name.split('@')
         let name = user_name[0]

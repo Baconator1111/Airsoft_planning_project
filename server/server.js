@@ -191,7 +191,7 @@ io.on('connection', function (socket) {
     socket.on('get comments', function (data) {
         const db = app.get('db'),
             { post_id_com } = data
-        console.log( post_id_com )
+        console.log( 'post id', post_id_com )
         db.get_post_comments(post_id_com)
             .then(comments => {
                 // console.log( comments )
@@ -202,7 +202,7 @@ io.on('connection', function (socket) {
     socket.on('get requests', function (data) {
         const db = app.get('db'),
             { user_id } = data
-        console.log(user_id)
+        console.log('user_id', user_id)
         db.get_friend_requests(user_id)
             .then(requests => {
                 console.log(requests)
@@ -213,7 +213,7 @@ io.on('connection', function (socket) {
     socket.on('get friends', function (data) {
         const db = app.get('db'),
             { user_id } = data
-        console.log(user_id)
+        console.log('user_id', user_id)
         db.get_friends(user_id)
             .then(currentFriends => {
                 console.log(currentFriends)
