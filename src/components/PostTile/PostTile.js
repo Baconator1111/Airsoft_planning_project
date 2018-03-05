@@ -106,6 +106,24 @@ class PostTile extends Component {
                 </div>
             </div>)
         const post = this.props.post
+        let user_name = post.user_name.split('@')
+        let name = user_name[0]
+        // set rank
+        let rank
+        switch (post.user_type) {
+            case 'reg':
+                rank = 'Soldier'
+                break
+            case 'teamL':
+                rank = 'Team Leader'
+                break
+            case 'squadL':
+                rank = 'Squad Leader'
+                break
+            case 'admin':
+                rank = 'Admin'
+                break
+        }
         if (!this.state.edit) {
             return (
                 <div key={post.post_id} className='postDisplay'>
@@ -121,8 +139,8 @@ class PostTile extends Component {
                     <div className='postContent' >
                         <div className='postUserInfo' >
                             <div className='postUserImg'><img src={post.user_img} alt="" /></div>
-                            <div className='postUserName'>{post.user_name}</div>
-                            <div className='postUserType'>{post.user_type}</div>
+                            <div className='postUserName'>{name}</div>
+                            <div className='postUserType'>{rank}</div>
                         </div>
                         <div className='postInfo' >
                             {post.post_img ? <div className='postImg'><img src={post.post_img} alt="" /></div> : null}
