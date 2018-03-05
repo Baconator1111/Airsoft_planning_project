@@ -184,7 +184,7 @@ io.on('connection', function (socket) {
         const db = app.get('db')
         db.get_posts(data.user_id)
             .then(posts => {
-                socket.emit('get posts', posts)
+                io.sockets.emit('get posts', posts)
             }).catch(err => console.log(err))
     })
 
