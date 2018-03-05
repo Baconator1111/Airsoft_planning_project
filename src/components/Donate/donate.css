@@ -5,4 +5,52 @@
     min-height: 100vh;
 }
 
+.donateTitle {
+    margin-top: 40px;
+}
 
+.donateContent textarea {
+    height: 100px;
+    width: 250px;
+    background: rgb(247, 247, 247);
+    margin-top: 20px;
+}
+
+.donateInput {
+    margin-top: 15px;
+}
+
+.donateInput input {
+    background: rgb(247, 247, 247);
+}
+
+.donatePaypal {
+    margin-top: 20px;
+    margin-bottom: 5px;
+    background: #3498db;
+    background-image: linear-gradient(to bottom, #3498db, #2980b9);
+    border-radius: 5px;
+    color: #ffffff;
+    padding: 5px;
+    font-size: 15px;
+    border: none;
+    text-decoration: none;
+}
+
+.donatePaypal:hover {
+    background: #3cb0fd;
+    background-image: -webkit-linear-gradient(top, #3cb0fd, #3498db);
+    background-image: -moz-linear-gradient(top, #3cb0fd, #3498db);
+    background-image: -ms-linear-gradient(top, #3cb0fd, #3498db);
+    background-image: -o-linear-gradient(top, #3cb0fd, #3498db);
+    background-image: linear-gradient(to bottom, #3cb0fd, #3498db);
+    text-decoration: none;
+}
+
+.donateOr {
+    margin-bottom: 5px;
+}
+
+.donateThankyou {
+    margin-top: 25px;
+}

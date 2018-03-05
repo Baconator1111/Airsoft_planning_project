@@ -39,18 +39,18 @@ class Donate extends Component {
       <div className="donateMain">
         <NavBar />
         <div className='donateContent' >
-          <div>Please leave us feedback with your donation!</div>
-          <textarea name="" id="" cols="30" rows="10"></textarea>
+          <div className='donateTitle' >Please leave us feedback with your donation!</div>
+          <textarea name="" id="" cols="30" rows="10" placeholder='Your thoughts go here   ' ></textarea>
           <div className='donateInput' >
             {/* <div className='donateDolla' >$</div> */}
             <div className='donateInput' >$<input onChange={e => this.handleAmount(e.target.value)} type="number" min={0} /></div>
           </div>
           <div className='donatePayment' >
-            <a href={paypalLink} ><button>PayPal</button></a>
-            <div>or</div>
+            <a href={paypalLink} ><button className='donatePaypal' >PayPal</button></a>
+            <div className='donateOr' >or</div>
             <StripeCheckout token={this.onToken} stripeKey={process.env.REACT_APP_STRIPE_PUBLIC_KEY} amount={this.state.amount} />
           </div>
-          <div>We thank you for your donation.</div>
+          <div className='donateThankyou' >We thank you for your donation.</div>
         </div>
       </div>
     );

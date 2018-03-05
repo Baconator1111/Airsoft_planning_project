@@ -174,7 +174,7 @@ io.on('connection', function (socket) {
             }
         }
         console.log(`Connection disconnected: ${connections.length} active connections.`)
-        ßsocket.emit('update users', { users: users });
+        socket.emit('update users', { users: users });
         if (!connections.length) {
             messages = [];
         }

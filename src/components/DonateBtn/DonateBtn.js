@@ -5,6 +5,6 @@ import './donateBtn.css'
 
 export default function DonateBtn() {
     return (
-        <Link to='/donate'><button>Donate Here</button></Link>
+        <Link to='/donate'><button className='donateBtn' >Donate Here</button></Link>
     )
 }
