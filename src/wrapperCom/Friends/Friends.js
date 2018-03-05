@@ -5,6 +5,8 @@ import ConfirmingFriends from '../../components/ConfirmingFriends/ConfirmingFrie
 import ListingFriends from '../../components/ListingFriends/ListingFriends'
 import SearchFriends from '../../components/SearchFriends/SearchFriends'
 
+import './friends.css'
+
 export default class Friends extends Component {
     constructor(props) {
         super(props)
@@ -15,13 +17,12 @@ export default class Friends extends Component {
 
     render() {
         return (
-            <div>
+            <div className='friendsMain' >
                 <NavBar page='Your Friends' />
-                <h1>Friends component</h1>
-                <div className='friends_components_wrapper' >
-                    <SearchFriends />
-                    <ListingFriends />
-                    <ConfirmingFriends />
+                <div className='friendsCont' >
+                    <div className='friendsLeft' ><SearchFriends /></div>
+                    <div className='friendsMid' ><ListingFriends /></div>
+                    <div className='friendsRight' ><ConfirmingFriends /></div>
                 </div>
             </div>
         )

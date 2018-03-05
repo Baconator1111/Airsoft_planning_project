@@ -2,6 +2,7 @@ import React, { Component } from 'react'
 import { socketConnect } from 'socket.io-react'
 import axios from 'axios'
 
+import './searchFriends.css'
 
 class SearchFriends extends Component {
     constructor(props) {
@@ -47,19 +48,21 @@ class SearchFriends extends Component {
 
     render() {
         return (
-            <div>
-                <div>Search For New Friends</div>
-                <input onChange={e => this.handleSearch(e.target.value)} type="text" />
+            <div className='searchFriendsMain' >
+                <div className='searchTitle' >Search For New Friends</div>
+                <div className='searchFriendsInput' ><input onChange={e => this.handleSearch(e.target.value)} type="text" /></div>
                 {this.state.results[0] ? this.state.results.map(newFriend => {
                     return (
-                        <div>
-                            <img src={newFriend.user_img} alt="" />
-                            <div>{newFriend.first_name}</div>
-                            <div>{newFriend.last_name}</div>
-                            <button onClick={() => this.handleNewFriendship(newFriend.user_id)} className='addFriendBtn' >Add</button>
+                        <div key={newFriend.user_id} className='newFriend' >
+                            <div className='newFriendImg' ><img src={newFriend.user_img} alt="" /></div>
+                            <div className='newFriendName' >
+                                <div className='newFriendFirstName' >{newFriend.first_name}</div>
+                                <div className='newFriendLastName' >{newFriend.last_name}</div>
+                            </div>
+                            <div className='addFriendPosition' ><button onClick={() => this.handleNewFriendship(newFriend.user_id)} className='addFriendBtn' >Add</button></div>
                         </div>
                     )
-                }) : 'Search by First and Last name'}
+                }) : 'Search by First then Last name'}
             </div>
         )
     }

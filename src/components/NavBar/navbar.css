@@ -13,12 +13,14 @@
     display: none;
 }
 
-
-
 .logoutBtn {
     background: none;
     border: none;
     color: #E8E8E8;
+}
+
+.logoutBtn:hover {
+    color: rgba(232, 232, 232, 0.565);
 }
 
 .navLogo {

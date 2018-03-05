@@ -51,10 +51,10 @@ export default class NavBar extends Component {
                         {/* <Link to='/my_team'><div>Team</div></Link> */}
                         {/* <Link to='/my_squad'><div>Squad</div></Link> */}
                         {/* <Link to='/current_game'><div>Game</div></Link> */}
-                        <Link to='/general_feed'><div>Forum</div></Link>
-                        <Link to='/profile'><div>My Profile</div></Link>
-                        <Link to='/friends'><div>My Friends</div></Link>
-                        <Link to='/saved_posts'><div>Saved Posts</div></Link>
+                        <Link  to='/general_feed'><button className='dropDownBtn dropDownFeed' >Forum</button></Link>
+                        <Link  to='/profile'><button className='dropDownBtn dropDownProfile' >My Profile</button></Link>
+                        <Link  to='/friends'><button className='dropDownBtn dropDownFriends' >My Friends</button></Link>
+                        <Link  to='/saved_posts'><button className='dropDownBtn dropDownSaved' >Saved Posts</button></Link>
                         {/* <Link to='/tech_tips'><div>Tech Tips</div></Link> */}
                     </div>
                 </div>

@@ -15,10 +15,8 @@ class ConfirmingFriends extends Component {
     componentDidMount() {
         const { socket } = this.props
         axios.get("/api/userinfo")
-            .then(user => {
-                let userInfo
-                userInfo = user.data
-                this.setState({ userId: user.data.user_id })
+            .then(({data}) => {
+                this.setState({ userId: data.user_id })
                 socket.emit('get requests', { user_id: this.state.userId })
             })
 

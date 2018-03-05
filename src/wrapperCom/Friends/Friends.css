@@ -1,0 +1,25 @@
+.friendsMain {
+    color: #E8E8E8;
+    background: #222222;
+    font-family: 'Montserrat', sans-serif;
+    min-height: 100vh;
+    min-width: 100vw;
+
+}
+
+.listingTitle {
+    margin-bottom: 30px;
+}
+
+.friendsCont {
+    display: flex;
+    justify-content: space-around;
+}
+
+.friendsLeft {
+    max-width: 250px;
+}
+
+.friendsRight {
+    max-width: 250px;
+}

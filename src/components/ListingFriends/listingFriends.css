@@ -1,0 +1,48 @@
+.listingMain {
+    margin-top: 25px;
+    display: flex;
+    flex-direction: column;
+}
+
+.friend {
+    margin-top: 10px;
+    display: flex;
+    justify-content: space-between;
+    align-content: center;
+    height: 90px;
+    width: 400px;
+    border-bottom: solid 1px #3D3D3D;
+}
+
+.friendImg img {
+    max-height: 5rem;
+    max-width: 5rem;
+}
+
+.friendName {
+    display: flex;
+    flex-direction: column;
+    margin-top: 30px;
+    margin-right: 50px;
+}
+
+.unfriendPosition {
+
+    display: flex;
+    align-items: center;
+}
+
+.unfriendBtn {
+    background: #3D3D3D;
+    padding: 8px;
+    border: solid 1px #E8E8E8;
+    color: #E8E8E8;
+}
+
+.unfriendBtn:focus {
+    outline: 0;
+}
+
+.unfriendBtn:hover {
+    background: #222222;
+}

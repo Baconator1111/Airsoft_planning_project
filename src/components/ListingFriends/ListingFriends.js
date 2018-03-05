@@ -2,6 +2,8 @@ import React, { Component } from 'react'
 import { socketConnect } from 'socket.io-react'
 import axios from 'axios'
 
+import './listingFriends.css'
+
 
 class ListingFriends extends Component {
     constructor(props) {
@@ -15,10 +17,8 @@ class ListingFriends extends Component {
     componentDidMount() {
         const { socket } = this.props
         axios.get("/api/userinfo")
-            .then(user => {
-                let userInfo
-                userInfo = user.data
-                this.setState({ userId: user.data.user_id })
+            .then(({ data }) => {
+                this.setState({ userId: data.user_id })
                 socket.emit('get friends', { user_id: this.state.userId })
             })
 
@@ -42,14 +42,17 @@ class ListingFriends extends Component {
 
     render() {
         return (
-            <div>
+            <div className='listingMain' >
+                <div className='listingTitle' >Current Friends</div>
                 {this.state.currentFriends[0] ? this.state.currentFriends.map(friend => {
                     return (
-                        <div>
-                            <img src={friend.user_img} alt="" />
-                            <div>{friend.first_name}</div>
-                            <div>{friend.last_name}</div>
-                            <button onClick={() => this.handleDeleteFriendship(friend.user_id)} className='deleteFriendBtn' >Unfriend</button>
+                        <div key={friend.user_id} className='friend' >
+                            <div className='friendImg' ><img src={friend.user_img} alt="" /></div>
+                            <div className='friendName' >
+                                <div className='friendFirstName' >{friend.first_name}</div>
+                                <div className='friendLastName' >{friend.last_name}</div>
+                            </div>
+                            <div className='unfriendPosition' ><button onClick={() => this.handleDeleteFriendship(friend.user_id)} className='unfriendBtn' >Unfriend</button></div>
                         </div>
                     )
                 }) : 'Search for your friends on the left'}
