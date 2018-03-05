@@ -206,7 +206,7 @@ io.on('connection', function (socket) {
         db.get_friend_requests(user_id)
             .then(requests => {
                 console.log(requests)
-                io.sockets.emit('friend requests', requests)
+                socket.emit('friend requests', requests)
             })
     })
 
