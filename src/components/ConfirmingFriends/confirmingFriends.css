@@ -1,0 +1,56 @@
+.confirmingFriendsMain {
+    margin-top: 25px;
+    display: flex;
+    flex-direction: column;
+}
+
+.confirmTitle {
+    margin-bottom: 10px;
+}
+
+.searchFriendsInput {
+    margin-bottom: 10px;
+}
+
+.friendRequest {
+    margin-top: 10px;
+    display: flex;
+    justify-content: space-between;
+    align-content: center;
+    height: 60px;
+    width: 250px;
+    border-bottom: solid 1px #3D3D3D;
+}
+
+.friendRequestImg img {
+    max-height: 3rem;
+    max-width: 3rem;
+}
+
+.friendRequestName {
+    display: flex;
+    flex-direction: column;
+    margin-top: 15px;
+    margin-right: 50px;
+}
+
+.confirmFriendPosition {
+
+    display: flex;
+    align-items: center;
+}
+
+.confirmFriendBtn {
+    background: #3D3D3D;
+    padding: 4px;
+    border: solid 1px #E8E8E8;
+    color: #E8E8E8;
+}
+
+.confirmFriendBtn:focus {
+    outline: 0;
+}
+
+.confirmFriendBtn:hover {
+    background: #222222;
+}

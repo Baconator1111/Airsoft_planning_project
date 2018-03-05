@@ -2,6 +2,7 @@ import React, { Component } from 'react'
 import { socketConnect } from 'socket.io-react'
 import axios from 'axios'
 
+import './confirmingFriends.css'
 
 class ConfirmingFriends extends Component {
     constructor(props) {
@@ -15,7 +16,7 @@ class ConfirmingFriends extends Component {
     componentDidMount() {
         const { socket } = this.props
         axios.get("/api/userinfo")
-            .then(({data}) => {
+            .then(({ data }) => {
                 this.setState({ userId: data.user_id })
                 socket.emit('get requests', { user_id: this.state.userId })
             })
@@ -40,15 +41,17 @@ class ConfirmingFriends extends Component {
 
     render() {
         return (
-            <div>
-                <div>Friend Requests</div>
+            <div className='confirmingFriendsMain' >
+                <div className='searchTitle' >Search For New Friends</div>
                 {this.state.pendingFriends[0] ? this.state.pendingFriends.map(friendRequest => {
                     return (
-                        <div>
-                            <img src={friendRequest.user_img} alt="" />
-                            <div>{friendRequest.first_name}</div>
-                            <div>{friendRequest.last_name}</div>
-                            <button onClick={() => this.acceptFriendRequest(friendRequest.fnd_id, friendRequest.user_id)} className='confirmFriendBtn' >Confirm</button>
+                        <div key={friendRequest.user_id} className='friendRequest' >
+                            <div className='friendRequestImg' ><img src={friendRequest.user_img} alt="" /></div>
+                            <div className='friendRequestName' >
+                                <div className='friendRequestFirstName' >{friendRequest.first_name}</div>
+                                <div className='friendRequestLastName' >{friendRequest.last_name}</div>
+                            </div>
+                            <div className='confirmFriendPosition' ><button onClick={() => this.acceptFriendRequest(friendRequest.fnd_id, friendRequest.user_id)} className='confrimFriendBtn' >Add</button></div>
                         </div>
                     )
                 }) : 'Currently you have no pending Friend Requests'}
@@ -58,3 +61,4 @@ class ConfirmingFriends extends Component {
 }
 
 export default socketConnect(ConfirmingFriends)
+
