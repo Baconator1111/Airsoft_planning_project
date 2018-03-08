@@ -42,7 +42,7 @@ class ConfirmingFriends extends Component {
     render() {
         return (
             <div className='confirmingFriendsMain' >
-                <div className='searchTitle' >Search For New Friends</div>
+                <div className='searchTitle' >Friend Requests</div>
                 {this.state.pendingFriends[0] ? this.state.pendingFriends.map(friendRequest => {
                     return (
                         <div key={friendRequest.user_id} className='friendRequest' >
