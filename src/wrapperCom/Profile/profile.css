@@ -109,10 +109,14 @@
   height: 30px;
 }
 
+.profileImgPositioning {
+  padding-left: 105px;
+}
+  
 .profileImg {
   max-height: 20rem;
   max-width: 20rem;
-  padding-left: 175px;
+  /* i need to adjust this to fix the stretching */
 }
 
 @media ( max-width: 420px ) {

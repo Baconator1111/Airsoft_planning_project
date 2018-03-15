@@ -138,7 +138,7 @@ export default class UserInfo extends Component {
                 <div className='profileInfo' >
                     <div className='profileLeft' >
                         <div className='profileTitle' >Profile</div>
-                        <img className='profileImg' src={this.state.userimg} alt="" />
+                        <div className='profileImgPositioning' ><img className='profileImg' src={this.state.userimg} alt="" /></div>
                         <label className='profileInputBtn' >
                             <input className='profileImgInput' onChange={e => this.uploadFile(e.target.files)} type="file" />
                             <div>Choose File</div>
