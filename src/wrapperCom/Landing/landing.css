@@ -7,14 +7,14 @@
     width: 100vw;
     font-family: 'Raleway', sans-serif;
     color: rgb(212, 208, 208);
-    display: grid;
+    display: grid; /* 31D */
     grid-template-rows: 80px 1fr 1fr;
     justify-items: center;
     align-items: center;
     grid-gap: 20px;
 }
 
-@media ( max-width: 420px) {
+@media only screen and ( max-width: 420px) { /* 29C */
     .landingMain {
         background: linear-gradient(rgba(0, 0, 0, .7), rgba(0, 0, 0, .7)), url(./military-planning-01.jpg);
         background-repeat: repeat;

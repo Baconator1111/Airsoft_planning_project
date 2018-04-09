@@ -1,11 +1,11 @@
 .postDisplay {
-    padding-left: 55px;
+    padding-left: 55px; /* 24E */
     max-width: 600px;
 }
 
-.postTitleCont {
+.postTitleCont {/* 24F */
     display: flex;
-    justify-content: space-between;
+    justify-content: space-between; /* 27C */
     padding: 6px;
     padding-left: 15px;
     max-width: 600px;
@@ -19,24 +19,24 @@
 }
 
 .postMenu {
-    display: flex;
-    flex-direction: row;
-    flex-wrap: nowrap;
+    display: flex;/* 27G, 25F */
+    flex-direction: row;/* 27F */
+    flex-wrap: nowrap;/* 27E */
     justify-content: flex-end;
-    align-items: center;
+    align-items: center; /* 27D */
 }
 
 .postMenuBtn {
     background: none;
-    border: none;
+    border: none;/* 24D */
     color: #E8E8E8;
 }
 
-.postMenuBtn:hover {
+.postMenuBtn:hover { /* 26H */
     color: rgba(232, 232, 232, 0.565);
 }
 
-.postMenuBtn:focus {
+.postMenuBtn:focus { /* 26G */
     outline: 0;
 }
 

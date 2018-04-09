@@ -24,7 +24,7 @@
 }
 
 .navLogo {
-    font-size: 1.7rem;
+    font-size: 1.7rem; /* 23D */
     text-decoration: none;
     color: #E8E8E8;
     margin-left: 15px;
@@ -46,7 +46,7 @@
 
 .navLinks {
     /* position: fixed; */
-    float: right;
+    float: right; /* 25D */
 }
 
 .navLinks div {
@@ -56,7 +56,7 @@
 }
 
 .navLinks div:hover {
-    text-decoration: none;
+    text-decoration: none; /* 30E */
     background-color: greenyellow;
 }
 

@@ -41,7 +41,7 @@
 }
 
 .homeFeedEvents {
-    position: fixed;
+    position: fixed; /* 25C */
     margin-top: 68px;
     margin-left: 25px;
 }
