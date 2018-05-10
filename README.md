@@ -27,10 +27,6 @@ This was deployed live on [universal-air-forum.com](https://www.universal-air-fo
 
 * **Ben Johnson** [Baconator1111](https://github.com/Baconator1111)
 
-## License
-
-This project is licensed under the MIT License - see the [LICENSE.md](LICENSE.md) file for details
-
 ## Acknowledgments
 
 I would like to thank the DevMountain Mentors for their support during the developement of this application.
