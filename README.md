@@ -1,6 +1,6 @@
 # Universal Air Forum
 
-One Paragraph of project description goes here
+This is a social site build specifically for airsoft hobbiests. Where you can post questions, stories and concerns. On these posts you can have a live debate in the comments section of the posts. You can also become friends with other users.
 
 ## Getting Started
 
@@ -16,8 +16,9 @@ This was deployed live on [universal-air-forum.com](https://www.universal-air-fo
 
 ## Built With
 
-* [React](https://reactjs.org/) - The web framework used
-* [NPM](https://www.npmjs.com/) - Dependency Management
+* [React](https://reactjs.org/) - The web framework used.
+* [Sockets](https://socket.io/) - Used for Live updating.
+* [NPM](https://www.npmjs.com/) - Dependency Management.
 * [Express](https://expressjs.com/) - Node.js server framework.
 * [Massive](https://massive-js.readthedocs.io/en/v2/) - PostgreSQL-specific data access tool.
 * [Axios](https://www.npmjs.com/package/axios) - Used to handle RESTfull api calls.
