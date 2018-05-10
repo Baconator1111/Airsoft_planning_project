@@ -21,7 +21,7 @@ const app = express(),
     { SERVER_PORT, SESSION_SECRET, DOMAIN, CLIENT_ID, CLIENT_SECRET, CALLBACK_URL, DB_CONNECTION } = process.env
 
 //   Auth0 here
-app.use( express.static( `${__dirname}/../build` ) )
+app.use(express.static(`${__dirname}/../build`))
 
 app.use(session({
     secret: SESSION_SECRET,
@@ -86,7 +86,7 @@ app.get('/logout', (req, res) => {
 )
 
 //  Frontend Endpoints start here
-app.get("/auth/active_user", userCtrl.authenticated )
+app.get("/auth/active_user", userCtrl.authenticated)
 
 app.use(bodyParser.json())
 
@@ -191,7 +191,7 @@ io.on('connection', function (socket) {
     socket.on('get comments', function (data) {
         const db = app.get('db'),
             { post_id_com } = data
-        console.log( 'post id', post_id_com )
+        console.log('post id', post_id_com)
         db.get_post_comments(post_id_com)
             .then(comments => {
                 // console.log( comments )
