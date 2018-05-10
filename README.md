@@ -23,13 +23,9 @@ This was deployed live on [universal-air-forum.com](https://www.universal-air-fo
 * [Massive](https://massive-js.readthedocs.io/en/v2/) - PostgreSQL-specific data access tool.
 * [Axios](https://www.npmjs.com/package/axios) - Used to handle RESTfull api calls.
 
-## Versioning
+## Author
 
-We use [SemVer](http://semver.org/) for versioning. For the versions available, see the [tags on this repository](https://github.com/your/project/tags). 
-
-## Authors
-
-* **Ben Johnson** - *Initial work, Backend Team, Authorization Specialist* - [Baconator1111](https://github.com/Baconator1111)
+* **Ben Johnson** [Baconator1111](https://github.com/Baconator1111)
 
 ## License
 
