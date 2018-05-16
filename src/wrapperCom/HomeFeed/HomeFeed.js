@@ -43,7 +43,13 @@ class HomeFeed extends Component {
         const { socket } = this.props
         socket.on('get posts', data => {
             this.setState({ currentPosts: data })
-            // console.log( this.state.currentPosts )
+        })
+    }
+
+    componentWillReceiveProps() {
+        const { socket } = this.props
+        socket.on('get posts', data => {
+            this.setState({ currentPosts: data })
         })
     }
 
