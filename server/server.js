@@ -184,7 +184,7 @@ io.on('connection', function (socket) {
         const db = app.get('db')
         db.get_posts(data.user_id)
             .then(posts => {
-                socket.emit('get posts', posts)
+                io.sockets.emit('get posts', posts)
             }).catch(err => console.log(err))
     })
 
@@ -206,7 +206,7 @@ io.on('connection', function (socket) {
         db.get_friend_requests(user_id)
             .then(requests => {
                 console.log(requests)
-                socket.emit('friend requests', requests)
+                io.sockets.emit('friend requests', requests)
             })
     })
 
@@ -217,7 +217,7 @@ io.on('connection', function (socket) {
         db.get_friends(user_id)
             .then(currentFriends => {
                 console.log(currentFriends)
-                socket.emit('current friends', currentFriends)
+                io.sockets.emit('current friends', currentFriends)
             })
     })
 })
