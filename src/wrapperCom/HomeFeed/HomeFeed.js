@@ -46,13 +46,6 @@ class HomeFeed extends Component {
         })
     }
 
-    componentWillReceiveProps() {
-        const { socket } = this.props
-        socket.on('get posts', data => {
-            this.setState({ currentPosts: data })
-        })
-    }
-
     handleChange(input, prop) {
         this.setState({
             [prop]: input
@@ -127,6 +120,10 @@ class HomeFeed extends Component {
     }
 
     render() {
+        const { socket } = this.props
+        socket.on('get posts', data => {
+            this.setState({ currentPosts: data })
+        })
         // console.log( this.state.currentPosts )
         const post = <div className='createPostExpBox' >
             <div>Post Title: <input onChange={e => this.handleChange(e.target.value, 'post_title')} className='inputPostTitle' type="text" placeholder='Post Title Here' /></div>
